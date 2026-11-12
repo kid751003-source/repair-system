@@ -60,14 +60,26 @@
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
-  // 把資料庫錯誤轉成看得懂的訊息
-  function explainError(error) {
-    const code = error && error.code;
-    if (code === "23514") return "資料不符合規則（類別、緊急程度或字數），請檢查後再送出。";
-    if (code === "42501") return "沒有權限寫入，請聯絡管理員確認資料庫權限設定。";
-    if (code === "PGRST205" || code === "42P01") return "找不到報修資料表，請確認 supabase/schema.sql 已執行。";
-    if (error && /fetch|network/i.test(error.message || "")) return "網路連線失敗，請稍後再試。";
-    return "送出失敗：" + ((error && error.message) || "未知錯誤");
+  // 把資料庫錯誤轉成看得懂的訊息，並附上錯誤代碼與原始訊息，方便排查
+  // action：「送出」或「清單載入」
+  function explainError(error, action) {
+    const code = (error && error.code) || "";
+    const raw = (error && (error.message || String(error))) || "未知錯誤";
+    let hint;
+    if (code === "23514") {
+      hint = "資料不符合規則（類別、緊急程度或字數），請檢查後再送出。";
+    } else if (code === "42501") {
+      hint = "資料庫拒絕存取，請確認已執行 supabase/schema.sql 的 GRANT 與 RLS 設定。";
+    } else if (code === "PGRST205" || code === "42P01") {
+      hint = "資料庫的 API 找不到 repair_requests 資料表。請確認已在 Supabase 的 SQL Editor 執行 supabase/schema.sql；" +
+        "若已執行，請再執行 notify pgrst, 'reload schema'; 重新載入，並確認 Data API 的 Exposed schemas 包含 public。";
+    } else if (/fetch|network/i.test(raw)) {
+      hint = "網路連線失敗，請稍後再試。";
+    } else {
+      hint = "發生未預期的錯誤。";
+    }
+    const detail = code ? `（錯誤代碼 ${code}：${raw}）` : `（${raw}）`;
+    return `${action}失敗：${hint}${detail}`;
   }
 
   // ---------- 表單 ----------
@@ -120,7 +132,7 @@
       // 不送 status、id、created_at，由資料庫自動產生
       const { error } = await client.from(TABLE).insert(row);
       if (error) {
-        showMessage(formMessage, explainError(error), false);
+        showMessage(formMessage, explainError(error, "送出"), false);
         return;
       }
       form.reset();
@@ -128,7 +140,7 @@
       showMessage(formMessage, "已送出報修，謝謝！", true);
       loadList();
     } catch (err) {
-      showMessage(formMessage, explainError(err), false);
+      showMessage(formMessage, explainError(err, "送出"), false);
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "送出報修";
@@ -188,7 +200,7 @@
         .order("created_at", { ascending: false })
         .limit(LIST_LIMIT);
       if (error) {
-        listStatus.textContent = "清單載入失敗：" + explainError(error).replace(/^送出失敗：/, "");
+        listStatus.textContent = explainError(error, "清單載入");
         return;
       }
       renderList(data || []);
