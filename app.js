@@ -2,6 +2,13 @@
 (function () {
   "use strict";
 
+  // PWA：註冊 Service Worker（離線時仍能打開畫面、可安裝到主畫面）
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => { /* 不支援或失敗時，網頁照常使用 */ });
+    });
+  }
+
   const TABLE = "repair_requests";
   const LIST_LIMIT = 20;
   const LIMITS = { reporter_name: 50, location: 100, description: 1000 };
@@ -73,8 +80,10 @@
     } else if (code === "PGRST205" || code === "42P01") {
       hint = "資料庫的 API 找不到 repair_requests 資料表。請確認已在 Supabase 的 SQL Editor 執行 supabase/schema.sql；" +
         "若已執行，請再執行 notify pgrst, 'reload schema'; 重新載入，並確認 Data API 的 Exposed schemas 包含 public。";
+    } else if (navigator.onLine === false) {
+      hint = "目前離線，請連上網路後再試。";
     } else if (/fetch|network/i.test(raw)) {
-      hint = "網路連線失敗，請稍後再試。";
+      hint = "網路連線失敗（可能目前離線），請連上網路後再試。";
     } else {
       hint = "發生未預期的錯誤。";
     }
@@ -205,7 +214,9 @@
       }
       renderList(data || []);
     } catch (err) {
-      listStatus.textContent = "清單載入失敗：網路連線問題，請稍後再試。";
+      listStatus.textContent = navigator.onLine === false
+        ? "目前離線，連上網路後按「重新整理」即可載入清單。"
+        : "清單載入失敗：網路連線問題，請稍後再試。";
     } finally {
       refreshBtn.disabled = false;
     }

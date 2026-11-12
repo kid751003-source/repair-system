@@ -11,3 +11,5 @@
 - 資料庫：先在 Supabase 的 SQL Editor 執行 `supabase/schema.sql`。
 - 本機預覽：在根目錄執行 `python3 -m http.server 8000`，再開啟 http://localhost:8000/。
 - 發佈：GitHub 的 Settings → Pages，來源選 `main` 分支的根目錄（`/ (root)`）。
+- 安裝成 App（PWA）：用手機開啟網址，Android Chrome 選「安裝應用程式」，iPhone Safari 選「分享 → 加入主畫面」。離線時仍能打開畫面，但送出與清單需要網路。
+- 更新網頁檔案時：同時更新 `index.html` 的 `?v=` 版本號與 `sw.js` 的 `VERSION`（兩者要一致），使用者下次開啟就會換成新版。
