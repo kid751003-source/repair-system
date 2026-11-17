@@ -1,4 +1,4 @@
-// 中部咖啡廳彙整：篩選與顯示
+// 台灣咖啡廳彙整：篩選與顯示
 (function () {
   "use strict";
 
@@ -37,7 +37,10 @@
   // ---------- 篩選選項 ----------
   $("checked-at").textContent = data.CHECKED_AT;
 
-  [...new Set(cafes.map((c) => c.city))].forEach((city) => {
+  // 縣市依 CITY_ORDER（由北到南）排序，沒列在裡面的放最後
+  const order = data.CITY_ORDER || [];
+  const rank = (city) => (order.includes(city) ? order.indexOf(city) : order.length);
+  [...new Set(cafes.map((c) => c.city))].sort((a, b) => rank(a) - rank(b)).forEach((city) => {
     const n = cafes.filter((c) => c.city === city).length;
     const opt = el("option", "", `${city}（${n}）`);
     opt.value = city;
@@ -62,11 +65,11 @@
   }
   fillDistricts();
 
-  // 篩選按鈕只放 2 間以上共有的特色，依出現次數排序；其他特色可用搜尋找到
+  // 篩選按鈕只放 4 間以上共有的特色，依出現次數排序；其他特色可用搜尋找到
   const tagCount = new Map();
   cafes.forEach((c) => c.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) || 0) + 1)));
   [...tagCount.entries()]
-    .filter(([, n]) => n >= 2)
+    .filter(([, n]) => n >= 4)
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-Hant"))
     .forEach(([tag]) => {
       const btn = el("button", "chip", tag);
@@ -153,6 +156,7 @@
 
   // ---------- 資料來源 ----------
   const srcList = $("source-list");
+  $("source-count").textContent = String(data.SOURCES.length);
   data.SOURCES.forEach((s) => {
     const li = el("li");
     const a = el("a", "", s.title);

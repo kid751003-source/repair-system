@@ -1,6 +1,6 @@
-# 專案規則：中部咖啡廳彙整
+# 專案規則：台灣咖啡廳彙整
 
-根目錄網頁是「中部咖啡廳彙整」（目前收錄台中市、苗栗縣、彰化縣、南投縣），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
+根目錄網頁是「台灣咖啡廳彙整」（收錄全台 22 縣市），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
 
 ## 專案結構
 
@@ -20,7 +20,8 @@
 
 ## 咖啡廳資料
 
-- 每筆都要填 `city`（縣市）與 `district`（區、鄉、鎮、市）。
+- 每筆都要填 `city`（縣市）與 `district`（區、鄉、鎮、市）；縣市名稱用「台」字（例如台北市、台南市），並列在 `CITY_ORDER` 裡。
+- 同一間店不要重複收錄；新增前先搜尋 `cafes.js` 是否已有。
 - 只放查得到來源的資料，並把來源加進 `SOURCES`；查不到的欄位寫「未查到」，不要自行推測。
 - 來源之間互相矛盾或資料不全時，設 `verify: true`，並在 `note` 寫明哪裡不一致。
 - 更新資料時，同時更新 `CHECKED_AT` 為查詢日期。

@@ -159,6 +159,8 @@ input:focus-visible, select:focus-visible, .chip:focus-visible, .btn:focus-visib
 
 /* ---------- 來源 ---------- */
 .sources { margin-top: 20px; margin-bottom: 32px; }
+.sources summary { cursor: pointer; list-style-position: inside; }
+.sources summary h2 { display: inline; }
 .sources ul { padding-left: 1.2em; margin: 8px 0 0; }
 .sources li { margin: 4px 0; overflow-wrap: anywhere; }
 .sources a { color: var(--link); }
