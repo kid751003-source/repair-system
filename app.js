@@ -2,12 +2,78 @@
 (function () {
   "use strict";
 
-  // PWA：註冊 Service Worker（離線時仍能瀏覽、可安裝到主畫面）
+  // ---------- 提示訊息（toast） ----------
+  const toastEl = document.getElementById("toast");
+  let toastTimer;
+  function toast(text, actionLabel, onAction, ms = 5000) {
+    if (!toastEl) return;
+    document.getElementById("toast-text").textContent = text;
+    const btn = document.getElementById("toast-action");
+    btn.hidden = !actionLabel;
+    btn.textContent = actionLabel || "";
+    btn.onclick = onAction || null;
+    toastEl.hidden = false;
+    clearTimeout(toastTimer);
+    if (ms) toastTimer = setTimeout(() => { toastEl.hidden = true; }, ms);
+  }
+
+  // ---------- PWA：Service Worker ----------
+  // 離線時仍能瀏覽；有新版本時提示重新整理
   if ("serviceWorker" in navigator) {
+    const hadController = !!navigator.serviceWorker.controller;
+    let reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (!hadController || reloading) return; // 第一次安裝不提示
+      toast("已有新版本", "重新整理", () => { reloading = true; location.reload(); }, 0);
+    });
     window.addEventListener("load", () => {
       navigator.serviceWorker.register("sw.js").catch(() => { /* 不支援或失敗時，網頁照常使用 */ });
     });
   }
+
+  // ---------- PWA：離線提示 ----------
+  const offlineText = "目前離線：仍可瀏覽上次儲存的清單，地圖與來源連結需要網路。";
+  window.addEventListener("offline", () => toast(offlineText, "", null, 8000));
+  window.addEventListener("online", () => toast("已恢復連線。"));
+  if (navigator.onLine === false) window.addEventListener("load", () => toast(offlineText, "", null, 8000));
+
+  // ---------- PWA：安裝 ----------
+  (function installUi() {
+    const btn = document.getElementById("install-btn");
+    const hint = document.getElementById("ios-install-hint");
+    if (!btn || !hint) return;
+    const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+    if (standalone) return; // 已經以 App 開啟，不顯示安裝入口
+
+    // Android、電腦版 Chrome／Edge：攔下瀏覽器的安裝提示，改由按鈕觸發
+    let deferred = null;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferred = e;
+      btn.hidden = false;
+    });
+    btn.addEventListener("click", async () => {
+      if (!deferred) return;
+      deferred.prompt();
+      const choice = await deferred.userChoice.catch(() => null);
+      deferred = null;
+      btn.hidden = true;
+      if (choice && choice.outcome === "accepted") toast("安裝完成，可以從主畫面開啟。");
+    });
+    window.addEventListener("appinstalled", () => { btn.hidden = true; });
+
+    // iPhone／iPad 的 Safari 沒有安裝按鈕，改顯示加入主畫面的步驟
+    const ua = navigator.userAgent;
+    const isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari = /safari/i.test(ua) && !/crios|fxios|edgios/i.test(ua);
+    let dismissed = false;
+    try { dismissed = localStorage.getItem("ios-install-hint-closed") === "1"; } catch (_) { /* 無法讀取時照常顯示 */ }
+    if (isIOS && isSafari && !dismissed) hint.hidden = false;
+    document.getElementById("ios-hint-close").addEventListener("click", () => {
+      hint.hidden = true;
+      try { localStorage.setItem("ios-install-hint-closed", "1"); } catch (_) { /* 略過 */ }
+    });
+  })();
 
   const data = window.CAFE_DATA || { CAFES: [], SOURCES: [], CHECKED_AT: "" };
   const cafes = data.CAFES;
@@ -102,6 +168,19 @@
       });
       tagBox.append(btn);
     });
+
+  // ---------- 網址參數（App 捷徑用）：?q=關鍵字&city=縣市&tag=特色 ----------
+  (function applyParams() {
+    const p = new URLSearchParams(location.search);
+    const q = p.get("q");
+    const city = p.get("city");
+    if (q) searchEl.value = q;
+    if (city && [...cityEl.options].some((o) => o.value === city)) { cityEl.value = city; fillDistricts(); }
+    p.getAll("tag").forEach((t) => {
+      const btn = [...tagBox.querySelectorAll(".chip")].find((b) => b.textContent === t);
+      if (btn) { selectedTags.add(t); btn.setAttribute("aria-pressed", "true"); }
+    });
+  })();
 
   // ---------- 清單 ----------
   function matches(cafe) {

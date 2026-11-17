@@ -24,7 +24,12 @@
 
 - 本機預覽：在根目錄執行 `python3 -m http.server 8000`，再開啟 http://localhost:8000/。
 - 發佈：GitHub 的 Settings → Pages，來源選 `main` 分支的根目錄（`/ (root)`）。
-- 安裝成 App：Android Chrome 選「安裝應用程式」，iPhone Safari 選「分享 → 加入主畫面」。離線時可以瀏覽上次載入的清單。
+- 安裝成 App（PWA）：
+  - Android、電腦版 Chrome／Edge：按頁首的「安裝 App」按鈕（或瀏覽器選單的「安裝應用程式」）。
+  - iPhone、iPad：用 Safari 開啟，頁首會顯示步驟：「分享 → 加入主畫面」。
+  - 離線時可以瀏覽上次載入的清單與投影片；有新版本時，畫面下方會提示「重新整理」。
+  - 長按 App 圖示有捷徑：景觀咖啡廳、深夜營業、不限時。網址也可以帶參數直接篩選，例如 `?city=台南市&tag=老宅&q=咖啡`。
+  - 安裝畫面的預覽截圖放在 `images/screenshots/`，畫面大改時請重新截圖。
 - 更新網頁檔案時：同時更新 `index.html` 的 `?v=` 版本號與 `sw.js` 的 `VERSION`（兩者要一致），使用者下次開啟就會換成新版。
 
 ## 其他資料夾
