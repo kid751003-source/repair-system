@@ -18,7 +18,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <!-- 版本號：每次修改 style.css、cafes.js、app.js 後請一起更新，
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
-  <link rel="stylesheet" href="style.css?v=20261117-10">
+  <link rel="stylesheet" href="style.css?v=20261117-11">
 </head>
 <body>
   <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
@@ -34,6 +34,18 @@
         <li><strong id="stat-cities">–</strong><span>個縣市</span></li>
         <li><strong id="checked-at">–</strong><span>資料查詢日</span></li>
       </ul>
+
+      <!-- PWA 安裝：Android／電腦顯示按鈕，iPhone 顯示加入主畫面教學；已安裝時都不顯示 -->
+      <div class="install-row">
+        <button id="install-btn" class="install-btn" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11 M7 10l5 5 5-5 M5 20h14"/></svg>
+          安裝 App
+        </button>
+        <p id="ios-install-hint" class="install-hint" hidden>
+          加到主畫面：點 Safari 下方的「分享」<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4 M8 8l4-4 4 4 M6 11v9h12v-9"/></svg>，再選「加入主畫面」。
+          <button id="ios-hint-close" type="button" aria-label="關閉提示">✕</button>
+        </p>
+      </div>
 
       <!-- 景觀咖啡廳照片投影片：內容由 slides.js 提供，app.js 產生 -->
       <section id="slideshow" class="slideshow" aria-roledescription="carousel" aria-label="景觀咖啡廳照片" hidden>
@@ -97,12 +109,17 @@
     <p>資料由 AI 整理自公開網路文章，僅供參考。</p>
   </footer>
 
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+    <span id="toast-text"></span>
+    <button id="toast-action" type="button" hidden></button>
+  </div>
+
   <button id="to-top" class="to-top" type="button" aria-label="回到頂端" hidden>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
   </button>
 
-  <script src="cafes.js?v=20261117-10"></script>
-  <script src="slides.js?v=20261117-10"></script>
-  <script src="app.js?v=20261117-10"></script>
+  <script src="cafes.js?v=20261117-11"></script>
+  <script src="slides.js?v=20261117-11"></script>
+  <script src="app.js?v=20261117-11"></script>
 </body>
 </html>
