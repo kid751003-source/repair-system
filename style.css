@@ -1,3 +1,14 @@
+/* ===================== 標題字體 ===================== */
+/* Noto Serif TC（思源宋體）粗體，只保留「島嶼咖啡散策」六個字，授權見 fonts/OFL.txt */
+@font-face {
+  font-family: "Title Serif";
+  src: url("fonts/title-serif-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+5CF6, U+5DBC, U+5496, U+5561, U+6563, U+7B56;
+}
+
 /* ===================== 色彩與字體（固定深色主題） ===================== */
 :root {
   color-scheme: dark;
@@ -484,3 +495,25 @@ select {
 
 /* 標語：兩段各自不拆行，窄螢幕時在問號後換行 */
 .hero-sub span { display: inline-block; }
+
+/* ===================== 標題（質感襯線字） ===================== */
+.hero-heading { display: flex; flex-direction: column; gap: 4px; }
+.hero h1 {
+  font-family: "Title Serif", "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PMingLiU", serif;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.hero-en {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Garamond", "Baskerville", "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  opacity: 0.9;
+}
+@media (max-width: 719px) {
+  .hero-en { font-size: 0.82rem; letter-spacing: 0.18em; }
+}
