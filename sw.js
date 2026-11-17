@@ -1,22 +1,22 @@
-// 報修登記 PWA 的 Service Worker
+// 台中咖啡廳彙整 PWA 的 Service Worker
 //
-// 快取策略：
-// ・本站檔案（網頁、樣式、程式、圖示）：先連網路拿最新版，連不上才用快取。
-//   這樣更新後不會卡在舊版，離線時仍能打開畫面。
-// ・supabase-js（CDN、網址含固定版本號）：先用快取，沒有才下載。
-// ・Supabase 資料（報修清單、送出報修）：一律不快取、不攔截，避免顯示過期資料。
+// 快取策略：本站檔案（網頁、資料、樣式、程式、圖示）先連網路拿最新版，
+// 連不上才用快取。這樣資料更新後不會卡在舊版，離線時仍能瀏覽上次的清單。
+// 地圖、資料來源等外部網站的連結不攔截。
 //
 // 版本號：修改下面 PRECACHE 裡的檔案或 index.html 的 ?v= 版本號時，
-// 請一起更新 VERSION 與 PRECACHE，舊快取會在新版啟用時自動清除。
-const VERSION = "20261112-3";
-const CACHE = "repair-app-" + VERSION;
-const CDN_SUPABASE = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js";
+// 請一起更新 VERSION，舊快取會在新版啟用時自動清除。
+const VERSION = "20261117-1";
+const PREFIX = "taichung-cafe-";
+const CACHE = PREFIX + VERSION;
+// 先前「報修登記」版本留下的快取，一併清除
+const OLD_PREFIXES = [PREFIX, "repair-app-"];
 
 const PRECACHE = [
   "./",
   "./index.html",
   "./style.css?v=" + VERSION,
-  "./config.js?v=" + VERSION,
+  "./cafes.js?v=" + VERSION,
   "./app.js?v=" + VERSION,
   "./manifest.webmanifest",
   "./icons/icon.svg",
@@ -29,10 +29,6 @@ self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
     await cache.addAll(PRECACHE.map((url) => new Request(url, { cache: "reload" })));
-    // CDN 下載失敗不影響安裝，之後第一次使用時再快取
-    try {
-      await cache.add(new Request(CDN_SUPABASE, { mode: "cors", credentials: "omit" }));
-    } catch (_) { /* 略過 */ }
     await self.skipWaiting();
   })());
 });
@@ -41,7 +37,9 @@ self.addEventListener("activate", (event) => {
   event.waitUntil((async () => {
     const names = await caches.keys();
     await Promise.all(
-      names.filter((n) => n.startsWith("repair-app-") && n !== CACHE).map((n) => caches.delete(n))
+      names
+        .filter((n) => n !== CACHE && OLD_PREFIXES.some((p) => n.startsWith(p)))
+        .map((n) => caches.delete(n))
     );
     await self.clients.claim();
   })());
@@ -49,29 +47,10 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  if (req.method !== "GET") return; // 送出報修等寫入請求不攔截
-
-  const url = new URL(req.url);
-
-  if (url.href === CDN_SUPABASE) {
-    event.respondWith(cacheFirst(req));
-    return;
-  }
-
-  // 只處理本站檔案；Supabase 等其他網站的請求直接交給瀏覽器
-  if (url.origin !== self.location.origin) return;
-
+  if (req.method !== "GET") return;
+  if (new URL(req.url).origin !== self.location.origin) return; // 外部網站不攔截
   event.respondWith(networkFirst(req));
 });
-
-async function cacheFirst(req) {
-  const cache = await caches.open(CACHE);
-  const hit = await cache.match(req);
-  if (hit) return hit;
-  const res = await fetch(req);
-  if (res.ok) cache.put(req, res.clone());
-  return res;
-}
 
 async function networkFirst(req) {
   const cache = await caches.open(CACHE);
