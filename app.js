@@ -1,227 +1,145 @@
-// 報修登記前端：新增報修、顯示最近 20 筆
+// 台中咖啡廳彙整：篩選與顯示
 (function () {
   "use strict";
 
-  // PWA：註冊 Service Worker（離線時仍能打開畫面、可安裝到主畫面）
+  // PWA：註冊 Service Worker（離線時仍能瀏覽、可安裝到主畫面）
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker.register("sw.js").catch(() => { /* 不支援或失敗時，網頁照常使用 */ });
     });
   }
 
-  const TABLE = "repair_requests";
-  const LIST_LIMIT = 20;
-  const LIMITS = { reporter_name: 50, location: 100, description: 1000 };
-  const CATEGORIES = ["設備", "網路", "環境", "其他"];
-  const URGENCIES = ["低", "中", "高"];
+  const data = window.CAFE_DATA || { CAFES: [], SOURCES: [], CHECKED_AT: "" };
+  const cafes = data.CAFES;
 
   const $ = (id) => document.getElementById(id);
-  const form = $("report-form");
-  const submitBtn = $("submit-btn");
-  const formMessage = $("form-message");
-  const listEl = $("report-list");
-  const listStatus = $("list-status");
-  const refreshBtn = $("refresh-btn");
-  const descCount = $("desc-count");
+  const searchEl = $("search");
+  const districtEl = $("district");
+  const tagBox = $("tag-filters");
+  const listEl = $("cafe-list");
+  const countEl = $("result-count");
+  const selectedTags = new Set();
 
-  const timeFormat = new Intl.DateTimeFormat("zh-TW", {
-    timeZone: "Asia/Taipei",
-    year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", hour12: false,
-  });
-
-  function showMessage(el, text, ok) {
-    el.textContent = text;
-    el.className = "message " + (ok ? "message-ok" : "message-error");
-    el.hidden = false;
-  }
-
-  function setFormEnabled(enabled) {
-    Array.from(form.elements).forEach((el) => { el.disabled = !enabled; });
-  }
-
-  // 檢查設定：還是預留文字、或不是網址時，停用表單並提示
-  const cfg = window.APP_CONFIG || {};
-  const url = String(cfg.SUPABASE_URL || "").trim();
-  const key = String(cfg.SUPABASE_PUBLISHABLE_KEY || "").trim();
-  let configProblem = "";
-  if (!/^https:\/\/\S+$/.test(url) || !key || /[【】]/.test(key)) {
-    configProblem = "尚未設定 Supabase：請在 config.js 填入專案網址與 publishable key。";
-  } else if (/^sb_secret_/.test(key) || /service_role/.test(key)) {
-    configProblem = "config.js 放的是 secret 金鑰，請立刻改成 publishable key 並到 Supabase 重新產生 secret 金鑰。";
-  } else if (!window.supabase || typeof window.supabase.createClient !== "function") {
-    configProblem = "無法載入 Supabase 程式庫，請檢查網路連線後重新整理。";
-  }
-
-  if (configProblem) {
-    const warn = $("config-warning");
-    warn.textContent = configProblem;
-    warn.hidden = false;
-    setFormEnabled(false);
-    refreshBtn.disabled = true;
-    listStatus.textContent = "無法載入清單。";
-    return;
-  }
-
-  const client = window.supabase.createClient(url, key, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
-
-  // 把資料庫錯誤轉成看得懂的訊息，並附上錯誤代碼與原始訊息，方便排查
-  // action：「送出」或「清單載入」
-  function explainError(error, action) {
-    const code = (error && error.code) || "";
-    const raw = (error && (error.message || String(error))) || "未知錯誤";
-    let hint;
-    if (code === "23514") {
-      hint = "資料不符合規則（類別、緊急程度或字數），請檢查後再送出。";
-    } else if (code === "42501") {
-      hint = "資料庫拒絕存取，請確認已執行 supabase/schema.sql 的 GRANT 與 RLS 設定。";
-    } else if (code === "PGRST205" || code === "42P01") {
-      hint = "資料庫的 API 找不到 repair_requests 資料表。請確認已在 Supabase 的 SQL Editor 執行 supabase/schema.sql；" +
-        "若已執行，請再執行 notify pgrst, 'reload schema'; 重新載入，並確認 Data API 的 Exposed schemas 包含 public。";
-    } else if (navigator.onLine === false) {
-      hint = "目前離線，請連上網路後再試。";
-    } else if (/fetch|network/i.test(raw)) {
-      hint = "網路連線失敗（可能目前離線），請連上網路後再試。";
-    } else {
-      hint = "發生未預期的錯誤。";
-    }
-    const detail = code ? `（錯誤代碼 ${code}：${raw}）` : `（${raw}）`;
-    return `${action}失敗：${hint}${detail}`;
-  }
-
-  // ---------- 表單 ----------
-  function readForm() {
-    const data = new FormData(form);
-    return {
-      reporter_name: String(data.get("reporter_name") || "").trim(),
-      location: String(data.get("location") || "").trim(),
-      category: String(data.get("category") || ""),
-      description: String(data.get("description") || "").trim(),
-      urgency: String(data.get("urgency") || "中"),
-    };
-  }
-
-  function validate(row) {
-    const problems = [];
-    const mark = (id, bad) => $(id).closest(".field").classList.toggle("invalid", bad);
-
-    const nameBad = !row.reporter_name || row.reporter_name.length > LIMITS.reporter_name;
-    const locBad = !row.location || row.location.length > LIMITS.location;
-    const catBad = !CATEGORIES.includes(row.category);
-    const descBad = !row.description || row.description.length > LIMITS.description;
-    mark("reporter_name", nameBad);
-    mark("location", locBad);
-    mark("category", catBad);
-    mark("description", descBad);
-
-    if (nameBad) problems.push("報修人（1～50 字）");
-    if (locBad) problems.push("地點或部門（1～100 字）");
-    if (catBad) problems.push("類別");
-    if (descBad) problems.push("問題說明（1～1000 字）");
-    if (!URGENCIES.includes(row.urgency)) problems.push("緊急程度");
-    return problems;
-  }
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    formMessage.hidden = true;
-
-    const row = readForm();
-    const problems = validate(row);
-    if (problems.length) {
-      showMessage(formMessage, "請確認：" + problems.join("、"), false);
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "送出中…";
-    try {
-      // 不送 status、id、created_at，由資料庫自動產生
-      const { error } = await client.from(TABLE).insert(row);
-      if (error) {
-        showMessage(formMessage, explainError(error, "送出"), false);
-        return;
-      }
-      form.reset();
-      descCount.textContent = "0";
-      showMessage(formMessage, "已送出報修，謝謝！", true);
-      loadList();
-    } catch (err) {
-      showMessage(formMessage, explainError(err, "送出"), false);
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "送出報修";
-    }
-  });
-
-  form.addEventListener("input", (event) => {
-    if (event.target.id === "description") descCount.textContent = String(event.target.value.length);
-    const field = event.target.closest(".field");
-    if (field) field.classList.remove("invalid");
-  });
-
-  // ---------- 清單 ----------
+  // 一律用 textContent 建立元素，避免插入 HTML
   function el(tag, className, text) {
     const node = document.createElement(tag);
     if (className) node.className = className;
-    if (text !== undefined) node.textContent = text; // 一律用 textContent，避免插入惡意 HTML
+    if (text !== undefined) node.textContent = text;
     return node;
   }
 
-  function formatTime(value) {
-    const d = new Date(value);
-    return isNaN(d) ? "" : timeFormat.format(d);
+  function mapUrl(cafe) {
+    return "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(cafe.name + " " + cafe.address);
   }
 
-  function renderList(rows) {
-    listEl.replaceChildren();
-    if (!rows.length) {
-      listStatus.textContent = "目前還沒有報修。";
-      return;
-    }
-    listStatus.textContent = "";
-    rows.forEach((r) => {
-      const li = el("li", "report-item");
-      const top = el("div", "report-top");
-      top.append(
-        el("span", "tag", r.category),
-        el("span", "tag tag-urgency-" + r.urgency, "緊急：" + r.urgency),
-        el("span", "tag", r.status)
-      );
-      li.append(
-        top,
-        el("p", "report-desc", r.description),
-        el("div", "report-meta", r.reporter_name + "・" + r.location + "・" + formatTime(r.created_at))
-      );
-      listEl.append(li);
+  // ---------- 篩選選項 ----------
+  $("checked-at").textContent = data.CHECKED_AT;
+
+  const districts = [...new Set(cafes.map((c) => c.district))];
+  districts.forEach((d) => {
+    const n = cafes.filter((c) => c.district === d).length;
+    const opt = el("option", "", `${d}（${n}）`);
+    opt.value = d;
+    districtEl.append(opt);
+  });
+
+  // 篩選按鈕只放 2 間以上共有的特色，依出現次數排序；其他特色可用搜尋找到
+  const tagCount = new Map();
+  cafes.forEach((c) => c.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) || 0) + 1)));
+  [...tagCount.entries()]
+    .filter(([, n]) => n >= 2)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-Hant"))
+    .forEach(([tag]) => {
+      const btn = el("button", "chip", tag);
+      btn.type = "button";
+      btn.setAttribute("aria-pressed", "false");
+      btn.addEventListener("click", () => {
+        if (selectedTags.has(tag)) selectedTags.delete(tag); else selectedTags.add(tag);
+        btn.setAttribute("aria-pressed", String(selectedTags.has(tag)));
+        render();
+      });
+      tagBox.append(btn);
     });
+
+  // ---------- 清單 ----------
+  function matches(cafe) {
+    const q = searchEl.value.trim().toLowerCase();
+    if (districtEl.value && cafe.district !== districtEl.value) return false;
+    for (const t of selectedTags) if (!cafe.tags.includes(t)) return false;
+    if (!q) return true;
+    const hay = [cafe.name, cafe.district, cafe.address, cafe.note, ...cafe.tags].join(" ").toLowerCase();
+    return q.split(/\s+/).every((word) => hay.includes(word));
   }
 
-  async function loadList() {
-    refreshBtn.disabled = true;
-    listStatus.textContent = "載入中…";
-    try {
-      const { data, error } = await client
-        .from(TABLE)
-        .select("id, created_at, reporter_name, location, category, description, urgency, status")
-        .order("created_at", { ascending: false })
-        .limit(LIST_LIMIT);
-      if (error) {
-        listStatus.textContent = explainError(error, "清單載入");
-        return;
-      }
-      renderList(data || []);
-    } catch (err) {
-      listStatus.textContent = navigator.onLine === false
-        ? "目前離線，連上網路後按「重新整理」即可載入清單。"
-        : "清單載入失敗：網路連線問題，請稍後再試。";
-    } finally {
-      refreshBtn.disabled = false;
+  function row(label, value, unknown) {
+    const div = el("div", "info-row");
+    div.append(el("span", "info-label", label), el("span", unknown ? "info-value unknown" : "info-value", value));
+    return div;
+  }
+
+  const isUnknown = (v) => /未查到|未寫/.test(v);
+
+  function card(cafe) {
+    const li = el("li", "card cafe");
+
+    const head = el("div", "cafe-head");
+    head.append(el("h2", "cafe-name", cafe.name), el("span", "district", cafe.district));
+    li.append(head);
+
+    if (cafe.verify) li.append(el("p", "verify", "⚠ 需確認：來源不一致或資料不全，出發前請先確認"));
+
+    li.append(
+      row("地址", cafe.address, false),
+      row("營業", cafe.hours, isUnknown(cafe.hours)),
+      row("公休", cafe.closed, isUnknown(cafe.closed))
+    );
+
+    if (cafe.tags.length) {
+      const tags = el("div", "tags");
+      cafe.tags.forEach((t) => tags.append(el("span", "tag", t)));
+      li.append(tags);
     }
+    if (cafe.note) li.append(el("p", "note", cafe.note));
+
+    const a = el("a", "btn map-btn", "地圖");
+    a.href = mapUrl(cafe);
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("aria-label", cafe.name + " 的 Google 地圖");
+    li.append(a);
+    return li;
   }
 
-  refreshBtn.addEventListener("click", loadList);
-  loadList();
+  function render() {
+    const shown = cafes.filter(matches);
+    listEl.replaceChildren(...shown.map(card));
+    countEl.textContent = shown.length
+      ? `共 ${shown.length} 間（總計 ${cafes.length} 間）`
+      : "沒有符合條件的咖啡廳，試試減少篩選條件。";
+  }
+
+  searchEl.addEventListener("input", render);
+  districtEl.addEventListener("change", render);
+  $("reset-btn").addEventListener("click", () => {
+    searchEl.value = "";
+    districtEl.value = "";
+    selectedTags.clear();
+    tagBox.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    render();
+  });
+
+  // ---------- 資料來源 ----------
+  const srcList = $("source-list");
+  data.SOURCES.forEach((s) => {
+    const li = el("li");
+    const a = el("a", "", s.title);
+    a.href = s.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    li.append(a);
+    srcList.append(li);
+  });
+
+  render();
 })();

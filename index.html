@@ -4,91 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>報修登記</title>
-  <meta name="description" content="填寫報修表單並查看最近的報修清單（示範系統）">
+  <title>台中咖啡廳彙整</title>
+  <meta name="description" content="台中咖啡廳彙整：依行政區與特色篩選，附地址、營業時間、公休日與地圖連結">
   <!-- PWA：安裝到主畫面 -->
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#2457c5" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1c222b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#6f4e37" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e1915" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="報修登記">
+  <meta name="apple-mobile-web-app-title" content="台中咖啡">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <!-- 版本號：每次修改 style.css、config.js、app.js 後請一起更新，
+  <!-- 版本號：每次修改 style.css、cafes.js、app.js 後請一起更新，
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
-  <link rel="stylesheet" href="style.css?v=20261112-3">
+  <link rel="stylesheet" href="style.css?v=20261117-1">
 </head>
 <body>
   <header class="site-header">
-    <h1>報修登記</h1>
-    <p class="subtitle">填寫下方表單送出報修，清單會顯示最近 20 筆。示範系統，請勿填寫真實姓名。</p>
+    <h1>台中咖啡廳彙整</h1>
+    <p class="subtitle">
+      依行政區與特色篩選，點「地圖」直接導航。
+      資料查詢日期：<span id="checked-at"></span>，營業時間可能變動，出發前請先確認店家公告。
+    </p>
   </header>
 
   <main>
-    <div id="config-warning" class="message message-error" role="alert" hidden></div>
-
-    <section class="card" aria-labelledby="form-title">
-      <h2 id="form-title">新增報修</h2>
-      <form id="report-form" novalidate>
-        <div class="field">
-          <label for="reporter_name">報修人 <span class="req">必填</span></label>
-          <input id="reporter_name" name="reporter_name" type="text" maxlength="50"
-                 autocomplete="name" required>
-        </div>
-
-        <div class="field">
-          <label for="location">地點或部門 <span class="req">必填</span></label>
-          <input id="location" name="location" type="text" maxlength="100" required>
-        </div>
-
-        <div class="field">
-          <label for="category">類別 <span class="req">必填</span></label>
-          <select id="category" name="category" required>
-            <option value="" selected disabled>請選擇</option>
-            <option value="設備">設備</option>
-            <option value="網路">網路</option>
-            <option value="環境">環境</option>
-            <option value="其他">其他</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="description">問題說明 <span class="req">必填</span></label>
-          <textarea id="description" name="description" rows="4" maxlength="1000" required></textarea>
-          <div class="hint"><span id="desc-count">0</span> / 1000 字</div>
-        </div>
-
-        <fieldset class="field">
-          <legend>緊急程度</legend>
-          <div class="segmented">
-            <label><input type="radio" name="urgency" value="低"><span>低</span></label>
-            <label><input type="radio" name="urgency" value="中" checked><span>中</span></label>
-            <label><input type="radio" name="urgency" value="高"><span>高</span></label>
-          </div>
-        </fieldset>
-
-        <button id="submit-btn" type="submit" class="btn">送出報修</button>
-        <div id="form-message" class="message" role="status" aria-live="polite" hidden></div>
-      </form>
+    <section class="card filters" aria-label="篩選">
+      <div class="field">
+        <label for="search">搜尋</label>
+        <input id="search" type="search" placeholder="店名、地址或特色" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="district">行政區</label>
+        <select id="district">
+          <option value="">全部行政區</option>
+        </select>
+      </div>
+      <fieldset class="field">
+        <legend>特色（可多選，需全部符合；其他特色請用搜尋）</legend>
+        <div id="tag-filters" class="chips"></div>
+      </fieldset>
+      <button id="reset-btn" type="button" class="btn btn-secondary">清除篩選</button>
     </section>
 
-    <section class="card" aria-labelledby="list-title">
-      <div class="list-header">
-        <h2 id="list-title">最近報修</h2>
-        <button id="refresh-btn" type="button" class="btn btn-secondary">重新整理</button>
-      </div>
-      <p id="list-status" class="list-status" aria-live="polite">載入中…</p>
-      <ul id="report-list" class="report-list"></ul>
+    <p id="result-count" class="result-count" aria-live="polite"></p>
+    <ul id="cafe-list" class="cafe-list"></ul>
+
+    <section class="card sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">資料來源</h2>
+      <p class="muted">
+        由 AI 透過網路搜尋整理以下公開文章；標示「⚠ 需確認」的店家，來源之間互相矛盾或查不到資料。
+      </p>
+      <ul id="source-list"></ul>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"
-          integrity="sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK"
-          crossorigin="anonymous"></script>
-  <script src="config.js?v=20261112-3"></script>
-  <script src="app.js?v=20261112-3"></script>
+  <script src="cafes.js?v=20261117-1"></script>
+  <script src="app.js?v=20261117-1"></script>
 </body>
 </html>
