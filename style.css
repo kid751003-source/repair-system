@@ -1,49 +1,28 @@
-/* ===================== 色彩與字體 ===================== */
+/* ===================== 色彩與字體（固定深色主題） ===================== */
 :root {
-  --bg: #f6f1ea;
-  --surface: #ffffff;
-  --surface-2: #fbf8f4;
-  --text: #2a211c;
-  --muted: #76675c;
-  --border: #e8ddd1;
-  --accent: #8a5a3b;
-  --accent-strong: #6b4428;
-  --accent-soft: #f3e7db;
-  --on-accent: #ffffff;
-  --hero-1: #2e2019;
-  --hero-2: #5a3a27;
-  --hero-3: #a0693f;
-  --warn-bg: #fff3dc;
-  --warn-text: #8a4f00;
-  --focus: #d79a62;
-  --shadow: 0 1px 2px rgba(60, 40, 25, 0.06), 0 6px 18px rgba(60, 40, 25, 0.07);
-  --shadow-hover: 0 2px 4px rgba(60, 40, 25, 0.08), 0 12px 28px rgba(60, 40, 25, 0.12);
+  color-scheme: dark;
+  --bg: #17120f;
+  --surface: #221b17;
+  --surface-2: #2a221d;
+  --text: #f1e9e1;
+  --muted: #b4a597;
+  --border: #3a2f28;
+  --accent: #e0aa7c;
+  --accent-strong: #f0c39b;
+  --accent-soft: #3a2b21;
+  --on-accent: #1b1410;
+  --hero-1: #120d0a;
+  --hero-2: #2f2016;
+  --hero-3: #5c3a22;
+  --warn-bg: #3a2a12;
+  --warn-text: #f5c37a;
+  --focus: #a8724a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35);
   --radius: 16px;
   --font: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #17120f;
-    --surface: #221b17;
-    --surface-2: #2a221d;
-    --text: #f1e9e1;
-    --muted: #b4a597;
-    --border: #3a2f28;
-    --accent: #e0aa7c;
-    --accent-strong: #f0c39b;
-    --accent-soft: #3a2b21;
-    --on-accent: #1b1410;
-    --hero-1: #120d0a;
-    --hero-2: #2f2016;
-    --hero-3: #5c3a22;
-    --warn-bg: #3a2a12;
-    --warn-text: #f5c37a;
-    --focus: #a8724a;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.25);
-    --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35);
-  }
-}
 
 * { box-sizing: border-box; }
 
