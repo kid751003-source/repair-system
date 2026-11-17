@@ -65,11 +65,11 @@
   }
   fillDistricts();
 
-  // 篩選按鈕只放 4 間以上共有的特色，依出現次數排序；其他特色可用搜尋找到
+  // 篩選按鈕只放 7 間以上共有的特色，依出現次數排序；其他特色可用搜尋找到
   const tagCount = new Map();
   cafes.forEach((c) => c.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) || 0) + 1)));
   [...tagCount.entries()]
-    .filter(([, n]) => n >= 4)
+    .filter(([, n]) => n >= 7)
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-Hant"))
     .forEach(([tag]) => {
       const btn = el("button", "chip", tag);
