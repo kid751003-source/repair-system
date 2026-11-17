@@ -29,6 +29,24 @@
     return node;
   }
 
+  // 線條圖示（地址、時間、公休、地圖）
+  const ICONS = {
+    pin: "M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z M12 12.2a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2z",
+    clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2",
+    calendar: "M4 6.5h16v13.5H4z M4 10.5h16 M8 3.5v4 M16 3.5v4 M9.5 14.5l5 3.5 M14.5 14.5l-5 3.5",
+    map: "M9 4 3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z M9 4v13.5 M15 6.5V20",
+  };
+  function icon(name) {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("aria-hidden", "true");
+    const path = document.createElementNS(NS, "path");
+    path.setAttribute("d", ICONS[name]);
+    svg.append(path);
+    return svg;
+  }
+
   function mapUrl(cafe) {
     return "https://www.google.com/maps/search/?api=1&query=" +
       encodeURIComponent(cafe.name + " " + cafe.address);
@@ -36,6 +54,8 @@
 
   // ---------- 篩選選項 ----------
   $("checked-at").textContent = data.CHECKED_AT;
+  $("stat-cafes").textContent = String(cafes.length);
+  $("stat-cities").textContent = String(new Set(cafes.map((c) => c.city)).size);
 
   // 縣市依 CITY_ORDER（由北到南）排序，沒列在裡面的放最後
   const order = data.CITY_ORDER || [];
@@ -94,37 +114,48 @@
     return q.split(/\s+/).every((word) => hay.includes(word));
   }
 
-  function row(label, value, unknown) {
+  function row(iconName, label, value, unknown) {
     const div = el("div", "info-row");
-    div.append(el("span", "info-label", label), el("span", unknown ? "info-value unknown" : "info-value", value));
+    const text = el("span", unknown ? "info-value unknown" : "info-value", value);
+    text.prepend(el("span", "sr-only", label + "："));
+    div.append(icon(iconName), text);
     return div;
   }
 
   const isUnknown = (v) => /未查到|未寫/.test(v);
 
   function card(cafe) {
-    const li = el("li", "card cafe");
+    const li = el("li", "cafe");
+    const body = el("div", "cafe-body");
 
     const head = el("div", "cafe-head");
     head.append(el("h2", "cafe-name", cafe.name), el("span", "district", cafe.city + " " + cafe.district));
-    li.append(head);
+    body.append(head);
 
-    if (cafe.verify) li.append(el("p", "verify", "⚠ 需確認：來源不一致或資料不全，出發前請先確認"));
+    if (cafe.verify) {
+      const v = el("p", "verify");
+      v.append(el("strong", "", "需確認"), el("span", "", "來源不一致或資料不全，出發前請先確認"));
+      body.append(v);
+    }
 
-    li.append(
-      row("地址", cafe.address, false),
-      row("營業", cafe.hours, isUnknown(cafe.hours)),
-      row("公休", cafe.closed, isUnknown(cafe.closed))
+    const info = el("div", "info");
+    info.append(
+      row("pin", "地址", cafe.address, false),
+      row("clock", "營業", cafe.hours, isUnknown(cafe.hours)),
+      row("calendar", "公休", cafe.closed, isUnknown(cafe.closed))
     );
+    body.append(info);
 
     if (cafe.tags.length) {
       const tags = el("div", "tags");
       cafe.tags.forEach((t) => tags.append(el("span", "tag", t)));
-      li.append(tags);
+      body.append(tags);
     }
-    if (cafe.note) li.append(el("p", "note", cafe.note));
+    if (cafe.note) body.append(el("p", "note", cafe.note));
+    li.append(body);
 
-    const a = el("a", "btn map-btn", "地圖");
+    const a = el("a", "map-btn");
+    a.append(icon("map"), el("span", "", "在地圖上查看"));
     a.href = mapUrl(cafe);
     a.target = "_blank";
     a.rel = "noopener";
@@ -135,10 +166,13 @@
 
   function render() {
     const shown = cafes.filter(matches);
-    listEl.replaceChildren(...shown.map(card));
-    countEl.textContent = shown.length
-      ? `共 ${shown.length} 間（總計 ${cafes.length} 間）`
-      : "沒有符合條件的咖啡廳，試試減少篩選條件。";
+    if (shown.length) {
+      listEl.replaceChildren(...shown.map(card));
+      countEl.replaceChildren("共 ", el("strong", "", String(shown.length)), ` 間（總計 ${cafes.length} 間）`);
+    } else {
+      listEl.replaceChildren(el("li", "empty", "☕ 找不到符合的咖啡廳，試試減少篩選條件或換個關鍵字。"));
+      countEl.textContent = "沒有符合條件的咖啡廳";
+    }
   }
 
   searchEl.addEventListener("input", render);
@@ -166,6 +200,13 @@
     li.append(a);
     srcList.append(li);
   });
+
+  // ---------- 回到頂端 ----------
+  const toTop = $("to-top");
+  const onScroll = () => { toTop.hidden = window.scrollY < 800; };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  toTop.addEventListener("click", () => window.scrollTo({ top: 0 }));
+  onScroll();
 
   render();
 })();

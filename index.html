@@ -3,71 +3,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="dark">
   <title>台灣咖啡廳彙整</title>
   <meta name="description" content="台灣咖啡廳彙整：全台 22 縣市，依縣市、行政區與特色篩選，附地址、營業時間、公休日與地圖連結">
   <!-- PWA：安裝到主畫面 -->
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#6f4e37" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1e1915" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#17120f">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="台灣咖啡">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <!-- 版本號：每次修改 style.css、cafes.js、app.js 後請一起更新，
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
-  <link rel="stylesheet" href="style.css?v=20261117-7">
+  <link rel="stylesheet" href="style.css?v=20261117-9">
 </head>
 <body>
-  <header class="site-header">
-    <h1>台灣咖啡廳彙整</h1>
-    <p class="subtitle">
-      收錄全台 22 縣市，依縣市、行政區與特色篩選，點「地圖」直接導航。
-      資料查詢日期：<span id="checked-at"></span>，營業時間可能變動，出發前請先確認店家公告。
-    </p>
+  <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-title">
+        <img class="hero-icon" src="icons/icon.svg" alt="" width="56" height="56">
+        <h1>台灣咖啡廳彙整</h1>
+      </div>
+      <p class="hero-sub">從基隆到馬祖，依縣市、行政區與特色找一間想去的咖啡廳。</p>
+      <ul class="stats" aria-label="收錄概況">
+        <li><strong id="stat-cafes">–</strong><span>間咖啡廳</span></li>
+        <li><strong id="stat-cities">–</strong><span>個縣市</span></li>
+        <li><strong id="checked-at">–</strong><span>資料查詢日</span></li>
+      </ul>
+    </div>
   </header>
 
   <main>
-    <section class="card filters" aria-label="篩選">
-      <div class="field">
-        <label for="search">搜尋</label>
-        <input id="search" type="search" placeholder="店名、地址或特色" autocomplete="off">
+    <section class="panel filters" aria-label="篩選">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="sr-only" for="search">搜尋</label>
+        <input id="search" type="search" placeholder="搜尋店名、地址或特色" autocomplete="off">
       </div>
-      <div class="field">
-        <label for="city">縣市</label>
-        <select id="city">
-          <option value="">全部縣市</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="district">行政區（區、鄉、鎮、市）</label>
-        <select id="district">
-          <option value="">全部行政區</option>
-        </select>
+      <div class="selects">
+        <div class="field">
+          <label for="city">縣市</label>
+          <select id="city">
+            <option value="">全部縣市</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="district">行政區</label>
+          <select id="district">
+            <option value="">全部行政區</option>
+          </select>
+        </div>
       </div>
       <fieldset class="field">
-        <legend>特色（可多選，需全部符合；其他特色請用搜尋）</legend>
+        <legend>特色 <span class="legend-hint">可多選，需全部符合；其他特色請用搜尋</span></legend>
         <div id="tag-filters" class="chips"></div>
       </fieldset>
-      <button id="reset-btn" type="button" class="btn btn-secondary">清除篩選</button>
     </section>
 
-    <p id="result-count" class="result-count" aria-live="polite"></p>
+    <div class="toolbar">
+      <p id="result-count" class="result-count" aria-live="polite"></p>
+      <button id="reset-btn" type="button" class="link-btn">清除篩選</button>
+    </div>
+
     <ul id="cafe-list" class="cafe-list"></ul>
 
-    <details class="card sources">
+    <details class="panel sources">
       <summary><h2>資料來源（<span id="source-count"></span> 篇）</h2></summary>
       <p class="muted">
-        由 AI 透過網路搜尋整理以下公開文章；標示「⚠ 需確認」的店家，來源之間互相矛盾或查不到資料。
+        由 AI 透過網路搜尋整理以下公開文章；標示「需確認」的店家，來源之間互相矛盾或查不到資料。
       </p>
       <ul id="source-list"></ul>
     </details>
   </main>
 
-  <script src="cafes.js?v=20261117-7"></script>
-  <script src="app.js?v=20261117-7"></script>
+  <footer class="site-footer">
+    <p>營業時間與公休日常會變動，出發前請以店家官方公告為準。</p>
+    <p>資料由 AI 整理自公開網路文章，僅供參考。</p>
+  </footer>
+
+  <button id="to-top" class="to-top" type="button" aria-label="回到頂端" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+  </button>
+
+  <script src="cafes.js?v=20261117-9"></script>
+  <script src="app.js?v=20261117-9"></script>
 </body>
 </html>
