@@ -1,6 +1,6 @@
 # 專案規則：中部咖啡廳彙整
 
-根目錄網頁是「中部咖啡廳彙整」（目前收錄台中市、苗栗縣），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
+根目錄網頁是「中部咖啡廳彙整」（目前收錄台中市、苗栗縣、彰化縣），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
 
 ## 專案結構
 
