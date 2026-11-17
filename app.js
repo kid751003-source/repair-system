@@ -1,4 +1,4 @@
-// 台中咖啡廳彙整：篩選與顯示
+// 中部咖啡廳彙整：篩選與顯示
 (function () {
   "use strict";
 
@@ -14,6 +14,7 @@
 
   const $ = (id) => document.getElementById(id);
   const searchEl = $("search");
+  const cityEl = $("city");
   const districtEl = $("district");
   const tagBox = $("tag-filters");
   const listEl = $("cafe-list");
@@ -36,13 +37,30 @@
   // ---------- 篩選選項 ----------
   $("checked-at").textContent = data.CHECKED_AT;
 
-  const districts = [...new Set(cafes.map((c) => c.district))];
-  districts.forEach((d) => {
-    const n = cafes.filter((c) => c.district === d).length;
-    const opt = el("option", "", `${d}（${n}）`);
-    opt.value = d;
-    districtEl.append(opt);
+  [...new Set(cafes.map((c) => c.city))].forEach((city) => {
+    const n = cafes.filter((c) => c.city === city).length;
+    const opt = el("option", "", `${city}（${n}）`);
+    opt.value = city;
+    cityEl.append(opt);
   });
+
+  // 行政區選單只列出所選縣市的區域；選「全部縣市」時列出全部並標上縣市
+  function fillDistricts() {
+    const city = cityEl.value;
+    const keep = districtEl.value;
+    const list = cafes.filter((c) => !city || c.city === city);
+    const keys = [...new Set(list.map((c) => c.city + "|" + c.district))];
+    districtEl.replaceChildren(Object.assign(el("option", "", "全部行政區"), { value: "" }));
+    keys.forEach((key) => {
+      const [c, d] = key.split("|");
+      const n = list.filter((x) => x.city === c && x.district === d).length;
+      const opt = el("option", "", `${city ? d : c + " " + d}（${n}）`);
+      opt.value = key;
+      districtEl.append(opt);
+    });
+    districtEl.value = keys.includes(keep) ? keep : "";
+  }
+  fillDistricts();
 
   // 篩選按鈕只放 2 間以上共有的特色，依出現次數排序；其他特色可用搜尋找到
   const tagCount = new Map();
@@ -65,10 +83,11 @@
   // ---------- 清單 ----------
   function matches(cafe) {
     const q = searchEl.value.trim().toLowerCase();
-    if (districtEl.value && cafe.district !== districtEl.value) return false;
+    if (cityEl.value && cafe.city !== cityEl.value) return false;
+    if (districtEl.value && cafe.city + "|" + cafe.district !== districtEl.value) return false;
     for (const t of selectedTags) if (!cafe.tags.includes(t)) return false;
     if (!q) return true;
-    const hay = [cafe.name, cafe.district, cafe.address, cafe.note, ...cafe.tags].join(" ").toLowerCase();
+    const hay = [cafe.name, cafe.city, cafe.district, cafe.address, cafe.note, ...cafe.tags].join(" ").toLowerCase();
     return q.split(/\s+/).every((word) => hay.includes(word));
   }
 
@@ -84,7 +103,7 @@
     const li = el("li", "card cafe");
 
     const head = el("div", "cafe-head");
-    head.append(el("h2", "cafe-name", cafe.name), el("span", "district", cafe.district));
+    head.append(el("h2", "cafe-name", cafe.name), el("span", "district", cafe.city + " " + cafe.district));
     li.append(head);
 
     if (cafe.verify) li.append(el("p", "verify", "⚠ 需確認：來源不一致或資料不全，出發前請先確認"));
@@ -120,9 +139,12 @@
   }
 
   searchEl.addEventListener("input", render);
+  cityEl.addEventListener("change", () => { fillDistricts(); render(); });
   districtEl.addEventListener("change", render);
   $("reset-btn").addEventListener("click", () => {
     searchEl.value = "";
+    cityEl.value = "";
+    fillDistricts();
     districtEl.value = "";
     selectedTags.clear();
     tagBox.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));

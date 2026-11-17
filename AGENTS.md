@@ -1,6 +1,6 @@
-# 專案規則：台中咖啡廳彙整
+# 專案規則：中部咖啡廳彙整
 
-根目錄網頁是「台中咖啡廳彙整」，用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
+根目錄網頁是「中部咖啡廳彙整」（目前收錄台中市、苗栗縣），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
 
 ## 專案結構
 
@@ -20,6 +20,7 @@
 
 ## 咖啡廳資料
 
+- 每筆都要填 `city`（縣市）與 `district`（區、鄉、鎮、市）。
 - 只放查得到來源的資料，並把來源加進 `SOURCES`；查不到的欄位寫「未查到」，不要自行推測。
 - 來源之間互相矛盾或資料不全時，設 `verify: true`，並在 `note` 寫明哪裡不一致。
 - 更新資料時，同時更新 `CHECKED_AT` 為查詢日期。
@@ -41,7 +42,7 @@
 ## 驗證
 
 - 本機預覽：在根目錄執行 `python3 -m http.server 8000`，開啟 http://localhost:8000/。
-- 用手機寬度檢查：沒有橫向捲動；搜尋、行政區、特色篩選結果正確；地圖連結帶店名與地址。
+- 用手機寬度檢查：沒有橫向捲動；搜尋、縣市、行政區、特色篩選結果正確；地圖連結帶店名與地址。
 - 確認 Service Worker 註冊成功，離線重新整理仍能看到清單。
 - 確認 `index.html` 的 `?v=` 與 `sw.js` 的 `VERSION` 一致。
 
