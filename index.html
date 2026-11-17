@@ -18,7 +18,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <!-- 版本號：每次修改 style.css、cafes.js、app.js 後請一起更新，
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
-  <link rel="stylesheet" href="style.css?v=20261117-9">
+  <link rel="stylesheet" href="style.css?v=20261117-10">
 </head>
 <body>
   <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
@@ -34,6 +34,18 @@
         <li><strong id="stat-cities">–</strong><span>個縣市</span></li>
         <li><strong id="checked-at">–</strong><span>資料查詢日</span></li>
       </ul>
+
+      <!-- 景觀咖啡廳照片投影片：內容由 slides.js 提供，app.js 產生 -->
+      <section id="slideshow" class="slideshow" aria-roledescription="carousel" aria-label="景觀咖啡廳照片" hidden>
+        <ul class="slides" id="slides"></ul>
+        <button class="slide-nav prev" type="button" aria-label="上一張">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+        </button>
+        <button class="slide-nav next" type="button" aria-label="下一張">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </button>
+        <div class="slide-dots" role="group" aria-label="選擇照片"></div>
+      </section>
     </div>
   </header>
 
@@ -89,7 +101,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
   </button>
 
-  <script src="cafes.js?v=20261117-9"></script>
-  <script src="app.js?v=20261117-9"></script>
+  <script src="cafes.js?v=20261117-10"></script>
+  <script src="slides.js?v=20261117-10"></script>
+  <script src="app.js?v=20261117-10"></script>
 </body>
 </html>

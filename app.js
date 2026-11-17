@@ -201,6 +201,105 @@
     srcList.append(li);
   });
 
+  // ---------- 景觀咖啡廳投影片 ----------
+  (function slideshow() {
+    const slides = window.SLIDES || [];
+    const box = $("slideshow");
+    if (!slides.length || !box) return;
+    const track = $("slides");
+    const dotsBox = box.querySelector(".slide-dots");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    slides.forEach((s, i) => {
+      const li = el("li", "slide");
+      li.setAttribute("role", "group");
+      li.setAttribute("aria-roledescription", "slide");
+      li.setAttribute("aria-label", `${i + 1} / ${slides.length}：${s.name}`);
+
+      const img = el("img");
+      img.src = s.src;
+      img.alt = s.alt;
+      img.width = 1280;
+      img.height = 720;
+      img.decoding = "async";
+      if (i > 0) img.loading = "lazy";
+
+      const cap = el("div", "slide-caption");
+      cap.append(el("h2", "", s.name), el("p", "slide-place", s.place));
+      const actions = el("div", "slide-actions");
+      if (s.find) {
+        const find = el("button", "slide-find", "在清單中查看");
+        find.type = "button";
+        find.addEventListener("click", () => {
+          searchEl.value = s.find;
+          cityEl.value = "";
+          fillDistricts();
+          districtEl.value = "";
+          selectedTags.clear();
+          tagBox.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+          render();
+          document.querySelector(".toolbar").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+        });
+        actions.append(find);
+      }
+      const credit = el("span", "slide-credit", "照片：");
+      const a = el("a", "", `${s.author}／${s.license}`);
+      a.href = s.source;
+      a.target = "_blank";
+      a.rel = "noopener";
+      credit.append(a, "（Wikimedia Commons）");
+      actions.append(credit);
+      cap.append(actions);
+
+      li.append(img, cap);
+      track.append(li);
+
+      const dot = el("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `第 ${i + 1} 張：${s.name}`);
+      dot.addEventListener("click", () => go(i));
+      dotsBox.append(dot);
+    });
+    box.hidden = false;
+
+    let index = 0;
+    const width = () => track.clientWidth;
+    function go(i) {
+      index = (i + slides.length) % slides.length;
+      track.scrollTo({ left: index * width(), behavior: reduceMotion ? "auto" : "smooth" });
+      mark();
+    }
+    function mark() {
+      dotsBox.querySelectorAll("button").forEach((d, i) => d.setAttribute("aria-current", String(i === index)));
+    }
+    // 使用者手指滑動時，依捲動位置更新目前是第幾張
+    let scrollTimer;
+    track.addEventListener("scroll", () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const i = Math.round(track.scrollLeft / Math.max(1, width()));
+        if (i !== index) { index = i; mark(); }
+      }, 80);
+    }, { passive: true });
+    window.addEventListener("resize", () => track.scrollTo({ left: index * width() }));
+    box.querySelector(".prev").addEventListener("click", () => { go(index - 1); restart(); });
+    box.querySelector(".next").addEventListener("click", () => { go(index + 1); restart(); });
+    mark();
+
+    // 自動播放：每 5 秒換一張；滑鼠移入、觸控或鍵盤操作時暫停；偏好減少動態時不自動播放
+    let timer = null;
+    let paused = false;
+    function start() { if (!reduceMotion && !timer) timer = setInterval(() => { if (!paused && !document.hidden) go(index + 1); }, 5000); }
+    function restart() { clearInterval(timer); timer = null; start(); }
+    box.addEventListener("mouseenter", () => { paused = true; });
+    box.addEventListener("mouseleave", () => { paused = false; });
+    box.addEventListener("focusin", () => { paused = true; });
+    box.addEventListener("focusout", () => { paused = false; });
+    track.addEventListener("touchstart", () => { paused = true; }, { passive: true });
+    track.addEventListener("touchend", () => { setTimeout(() => { paused = false; }, 4000); }, { passive: true });
+    start();
+  })();
+
   // ---------- 回到頂端 ----------
   const toTop = $("to-top");
   const onScroll = () => { toTop.hidden = window.scrollY < 800; };
