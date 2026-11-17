@@ -18,7 +18,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <!-- 版本號：每次修改 style.css、cafes.js、app.js 後請一起更新，
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
-  <link rel="stylesheet" href="style.css?v=20261117-14">
+  <!-- 標題字體：只含「島嶼咖啡散策」六個字的 Noto Serif TC 子集（約 3 KB），先行載入避免閃爍 -->
+  <link rel="preload" href="fonts/title-serif-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=20261117-15">
 </head>
 <body>
   <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
@@ -26,7 +28,10 @@
     <div class="hero-inner">
       <div class="hero-title">
         <img class="hero-icon" src="icons/icon.svg" alt="" width="56" height="56">
-        <h1>島嶼咖啡散策</h1>
+        <div class="hero-heading">
+          <h1>島嶼咖啡散策</h1>
+          <p class="hero-en" lang="en">Island Café Stroll</p>
+        </div>
       </div>
       <p class="hero-sub"><span>今天想去哪裡喝咖啡？</span><span>就出發吧。</span></p>
       <ul class="stats" aria-label="收錄概況">
@@ -118,8 +123,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
   </button>
 
-  <script src="cafes.js?v=20261117-14"></script>
-  <script src="slides.js?v=20261117-14"></script>
-  <script src="app.js?v=20261117-14"></script>
+  <script src="cafes.js?v=20261117-15"></script>
+  <script src="slides.js?v=20261117-15"></script>
+  <script src="app.js?v=20261117-15"></script>
 </body>
 </html>
