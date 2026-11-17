@@ -20,7 +20,7 @@
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
   <!-- 標題字體：只含「島嶼咖啡散策」六個字的 Noto Serif TC 子集（約 3 KB），先行載入避免閃爍 -->
   <link rel="preload" href="fonts/title-serif-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=20261117-15">
+  <link rel="stylesheet" href="style.css?v=20261117-16">
 </head>
 <body>
   <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
@@ -34,11 +34,6 @@
         </div>
       </div>
       <p class="hero-sub"><span>今天想去哪裡喝咖啡？</span><span>就出發吧。</span></p>
-      <ul class="stats" aria-label="收錄概況">
-        <li><strong id="stat-cafes">–</strong><span>間咖啡廳</span></li>
-        <li><strong id="stat-cities">–</strong><span>個縣市</span></li>
-        <li><strong id="checked-at">–</strong><span>資料查詢日</span></li>
-      </ul>
 
       <!-- PWA 安裝：Android／電腦顯示按鈕，iPhone 顯示加入主畫面教學；已安裝時都不顯示 -->
       <div class="install-row">
@@ -110,7 +105,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>營業時間與公休日常會變動，出發前請以店家官方公告為準。</p>
+    <p>營業時間與公休日常會變動，出發前請以店家官方公告為準。資料查詢日：<span id="checked-at"></span></p>
     <p>資料由 AI 整理自公開網路文章，僅供參考。</p>
   </footer>
 
@@ -123,8 +118,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
   </button>
 
-  <script src="cafes.js?v=20261117-15"></script>
-  <script src="slides.js?v=20261117-15"></script>
-  <script src="app.js?v=20261117-15"></script>
+  <script src="cafes.js?v=20261117-16"></script>
+  <script src="slides.js?v=20261117-16"></script>
+  <script src="app.js?v=20261117-16"></script>
 </body>
 </html>

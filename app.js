@@ -120,8 +120,6 @@
 
   // ---------- 篩選選項 ----------
   $("checked-at").textContent = data.CHECKED_AT;
-  $("stat-cafes").textContent = String(cafes.length);
-  $("stat-cities").textContent = String(new Set(cafes.map((c) => c.city)).size);
 
   // 縣市依 CITY_ORDER（由北到南）排序，沒列在裡面的放最後
   const order = data.CITY_ORDER || [];
