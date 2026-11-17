@@ -11,6 +11,7 @@
 - `index.html`、`style.css`、`app.js`：頁面、樣式與篩選功能。
 - `cafes.js`：咖啡廳資料與資料來源清單。
 - `manifest.webmanifest`、`sw.js`、`icons/`：PWA 設定、離線快取與圖示。
+- `slides.js`、`images/slides/`：頁首的景觀咖啡廳投影片。照片來自 Wikimedia Commons，皆為創用 CC 授權，每張的作者、授權與原始頁面寫在 `slides.js`，畫面上也會顯示。CC BY-SA 照片的裁切版本同樣依 CC BY-SA 授權。
 
 ## 資料說明
 

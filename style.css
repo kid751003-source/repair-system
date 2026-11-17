@@ -332,3 +332,96 @@ select {
   .filters .selects { grid-column: 2; }
   .filters fieldset { grid-column: 1 / -1; }
 }
+
+/* ===================== 景觀咖啡廳投影片 ===================== */
+.slideshow {
+  position: relative;
+  margin-top: 24px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0d0a08;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.slideshow[hidden] { display: none; }
+
+.slides {
+  list-style: none; margin: 0; padding: 0;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.slides::-webkit-scrollbar { display: none; }
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  aspect-ratio: 16 / 9;
+}
+.slide img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover;
+}
+.slide-caption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 48px 18px 38px;
+  background: linear-gradient(transparent, rgba(10, 7, 5, 0.85));
+  color: #fff7ef;
+}
+.slide-caption h2 { margin: 0; font-size: clamp(1.05rem, 3.6vw, 1.5rem); line-height: 1.3; }
+.slide-place { margin: 2px 0 0; font-size: 0.88rem; color: rgba(255, 247, 239, 0.85); }
+.slide-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 8px; }
+.slide-find {
+  font: inherit; font-size: 0.85rem; font-weight: 600;
+  color: #1b1410; background: #e0aa7c;
+  border: 0; border-radius: 999px;
+  padding: 6px 14px; min-height: 34px;
+  cursor: pointer;
+}
+.slide-find:hover { background: #f0c39b; }
+.slide-credit { font-size: 0.72rem; color: rgba(255, 247, 239, 0.7); }
+.slide-credit a { color: inherit; }
+
+.slide-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(20, 14, 10, 0.55);
+  backdrop-filter: blur(4px);
+  color: #fff; cursor: pointer;
+  display: grid; place-items: center;
+}
+.slide-nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.slide-nav:hover { background: rgba(20, 14, 10, 0.8); }
+.slide-nav.prev { left: 10px; }
+.slide-nav.next { right: 10px; }
+
+.slide-dots {
+  position: absolute; left: 0; right: 0; bottom: 12px;
+  display: flex; justify-content: center; gap: 6px;
+}
+.slide-dots button {
+  width: 24px; height: 24px; padding: 0;
+  border: 0; background: none; cursor: pointer;
+  display: grid; place-items: center;
+}
+.slide-dots button::before {
+  content: ""; display: block;
+  width: 8px; height: 8px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  transition: width 0.2s, background 0.2s;
+}
+.slide-dots button[aria-current="true"]::before { width: 22px; background: #e0aa7c; }
+
+@media (max-width: 719px) {
+  .slideshow { margin-top: 16px; border-radius: 14px; }
+  .slide { aspect-ratio: 4 / 3; }
+  /* 手機上把箭頭移到照片上方，避免蓋住店名 */
+  .slide-nav { width: 36px; height: 36px; top: 30%; }
+  .slide-caption { padding: 40px 14px 34px; }
+}
+@media (min-width: 720px) {
+  .slide { aspect-ratio: 21 / 9; }
+}
