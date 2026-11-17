@@ -1595,7 +1595,7 @@ window.CAFE_DATA = {
       name: "Mamonaku Café（復古車廂）",
       city: "台中市",
       district: "中區",
-      address: "台中火車站舊站月台",
+      address: "台中市中區台灣大道一段1號（台中火車站舊站月台）",
       hours: "13:00–18:00 或 12:00–18:00（來源不一致）",
       closed: "週二",
       tags: ["復古車廂", "不提供預約"],
