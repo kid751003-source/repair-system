@@ -1,4 +1,4 @@
-// 中部咖啡廳彙整 PWA 的 Service Worker
+// 台灣咖啡廳彙整 PWA 的 Service Worker
 //
 // 快取策略：本站檔案（網頁、資料、樣式、程式、圖示）先連網路拿最新版，
 // 連不上才用快取。這樣資料更新後不會卡在舊版，離線時仍能瀏覽上次的清單。
@@ -6,7 +6,7 @@
 //
 // 版本號：修改下面 PRECACHE 裡的檔案或 index.html 的 ?v= 版本號時，
 // 請一起更新 VERSION，舊快取會在新版啟用時自動清除。
-const VERSION = "20261117-4";
+const VERSION = "20261117-5";
 const PREFIX = "taichung-cafe-";
 const CACHE = PREFIX + VERSION;
 // 先前「報修登記」版本留下的快取，一併清除
