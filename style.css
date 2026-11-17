@@ -481,3 +481,6 @@ select {
   cursor: pointer;
 }
 .toast button[hidden] { display: none; }
+
+/* 標語：兩段各自不拆行，窄螢幕時在問號後換行 */
+.hero-sub span { display: inline-block; }
