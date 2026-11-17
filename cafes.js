@@ -1,4 +1,4 @@
-// 台中咖啡廳彙整資料
+// 中部咖啡廳彙整資料（台中市、苗栗縣）
 //
 // 資料來源：網路上公開的咖啡廳推薦文章（清單見 SOURCES），由 AI 透過網路搜尋整理。
 // 查詢日期：CHECKED_AT。營業時間、公休日常會變動，前往前請以店家官方公告為準。
@@ -6,8 +6,9 @@
 //
 // 欄位：
 //   name     店名
-//   district 行政區
-//   address  地址（臺中市可省略）
+//   city     縣市
+//   district 行政區（區、鄉、鎮、市）
+//   address  地址
 //   hours    營業時間
 //   closed   公休日
 //   tags     特色標籤
@@ -19,6 +20,7 @@ window.CAFE_DATA = {
   CAFES: [
     {
       name: "Pharos Coffee（台中綠美圖）",
+      city: "台中市",
       district: "西屯區",
       address: "台中市西屯區中科路2201號",
       hours: "10:00–17:30",
@@ -29,6 +31,7 @@ window.CAFE_DATA = {
     },
     {
       name: "享。拾光 Fun Time",
+      city: "台中市",
       district: "西屯區",
       address: "台中市西屯區國安一路51號",
       hours: "07:30–16:30",
@@ -39,6 +42,7 @@ window.CAFE_DATA = {
     },
     {
       name: "時光",
+      city: "台中市",
       district: "中區",
       address: "台中市中區台灣大道一段199巷1號",
       hours: "10:00–18:00",
@@ -49,6 +53,7 @@ window.CAFE_DATA = {
     },
     {
       name: "Mamonaku Café（復古車廂）",
+      city: "台中市",
       district: "中區",
       address: "台中火車站舊站月台",
       hours: "13:00–18:00 或 12:00–18:00（來源不一致）",
@@ -59,6 +64,7 @@ window.CAFE_DATA = {
     },
     {
       name: "早捌 x 柳川",
+      city: "台中市",
       district: "中區",
       address: "台中市中區柳川西路三段18號",
       hours: "未查到",
@@ -69,6 +75,7 @@ window.CAFE_DATA = {
     },
     {
       name: "Peakless Coffee Roasters",
+      city: "台中市",
       district: "西區",
       address: "台中市西區五權西路一段21號",
       hours: "每天 11:00–18:00",
@@ -79,6 +86,7 @@ window.CAFE_DATA = {
     },
     {
       name: "MITAKA S 3e CAFE",
+      city: "台中市",
       district: "西區",
       address: "台中市西區五權路2-201巷8號",
       hours: "10:00–17:30",
@@ -89,6 +97,7 @@ window.CAFE_DATA = {
     },
     {
       name: "At three café",
+      city: "台中市",
       district: "西區",
       address: "台中市西區中興三巷15號",
       hours: "平日 11:30–20:00；假日 10:30–20:00",
@@ -99,6 +108,7 @@ window.CAFE_DATA = {
     },
     {
       name: "成真咖啡（審計新村）",
+      city: "台中市",
       district: "西區",
       address: "台中市西區民生路370號",
       hours: "平日 09:00–20:00、週末 09:00–21:00，或每天 09:00–23:00（來源不一致）",
@@ -109,6 +119,7 @@ window.CAFE_DATA = {
     },
     {
       name: "同齊咖吡 北屯旗艦店",
+      city: "台中市",
       district: "北屯區",
       address: "台中市北屯區熱河路二段226號",
       hours: "每天 08:00–24:00",
@@ -119,6 +130,7 @@ window.CAFE_DATA = {
     },
     {
       name: "松日咖啡",
+      city: "台中市",
       district: "北屯區",
       address: "台中市北屯區松文街83號",
       hours: "週一 10:00–18:00；週二至週日 09:00–18:00",
@@ -129,6 +141,7 @@ window.CAFE_DATA = {
     },
     {
       name: "祌咖啡 Chung Café",
+      city: "台中市",
       district: "北屯區",
       address: "台中市北屯區三光北一街37號",
       hours: "平日 10:00–22:00；假日 11:00–19:00",
@@ -139,6 +152,7 @@ window.CAFE_DATA = {
     },
     {
       name: "G'day",
+      city: "台中市",
       district: "南區",
       address: "台中市南區五權南路100號",
       hours: "09:00–21:00",
@@ -149,6 +163,7 @@ window.CAFE_DATA = {
     },
     {
       name: "啡文學咖啡館 大英旗艦店",
+      city: "台中市",
       district: "南屯區",
       address: "台中市南屯區大墩十四街265號",
       hours: "07:30–22:30（最後點餐 22:00）",
@@ -159,6 +174,7 @@ window.CAFE_DATA = {
     },
     {
       name: "小鍋咖啡甜點",
+      city: "台中市",
       district: "東區",
       address: "台中市東區大勇街28號",
       hours: "未查到",
@@ -167,10 +183,134 @@ window.CAFE_DATA = {
       note: "平日低消任一品項；假日低消每人 150 元。",
       verify: true,
     },
+
+    // ---------- 苗栗縣 ----------
+    {
+      name: "Pergram Coffee",
+      city: "苗栗縣",
+      district: "苗栗市",
+      address: "苗栗縣苗栗市中山路108號1樓",
+      hours: "11:00–19:00",
+      closed: "週一",
+      tags: [],
+      note: "不同文章的營業時間與公休日有出入。",
+      verify: true,
+    },
+    {
+      name: "果宅咖啡",
+      city: "苗栗縣",
+      district: "頭份市",
+      address: "苗栗縣頭份市信東路105號",
+      hours: "10:00–18:00",
+      closed: "週三",
+      tags: [],
+      note: "",
+      verify: false,
+    },
+    {
+      name: "檸咖啡 Ning Cafe",
+      city: "苗栗縣",
+      district: "頭份市",
+      address: "苗栗縣頭份市建國路二段1號之5",
+      hours: "平日 09:00–18:00；週末 09:00–21:00",
+      closed: "未查到",
+      tags: ["不限時", "插座", "Wi-Fi", "早午餐", "甜點"],
+      note: "每人低消 100 元。電話 037-590176。來源文章較舊，資訊可能已變動。",
+      verify: true,
+    },
+    {
+      name: "貳拾參",
+      city: "苗栗縣",
+      district: "頭份市",
+      address: "苗栗縣頭份市中興路379巷20弄23號",
+      hours: "11:00–21:00",
+      closed: "週二",
+      tags: ["不限時", "插座", "Wi-Fi", "停車場"],
+      note: "簡餐、咖啡、下午茶；附設停車場。",
+      verify: false,
+    },
+    {
+      name: "拾好時 foodimemory",
+      city: "苗栗縣",
+      district: "竹南鎮",
+      address: "苗栗縣竹南鎮照南路116號",
+      hours: "週一至週五 09:00–17:30；週六日 09:00–18:00",
+      closed: "週三",
+      tags: [],
+      note: "不同文章的營業時間與公休日有出入。",
+      verify: true,
+    },
+    {
+      name: "磨實 Cafe & Living",
+      city: "苗栗縣",
+      district: "竹南鎮",
+      address: "苗栗縣竹南鎮南田街7號",
+      hours: "11:00–18:00",
+      closed: "公休日於粉專公告",
+      tags: [],
+      note: "每組入內不超過 6 位。",
+      verify: false,
+    },
+    {
+      name: "3 Hills Cafe 三丘景觀餐廳",
+      city: "苗栗縣",
+      district: "三義鄉",
+      address: "苗栗縣三義鄉勝興村勝興36-9號",
+      hours: "每天 10:30–17:30",
+      closed: "未寫（來源寫每天營業）",
+      tags: ["景觀"],
+      note: "電話 03-787-6566。",
+      verify: false,
+    },
+    {
+      name: "漫時光咖啡",
+      city: "苗栗縣",
+      district: "三義鄉",
+      address: "苗栗縣三義鄉龍騰村9之5號",
+      hours: "平日 13:30–17:00；假日 11:30–17:30",
+      closed: "週三、週四",
+      tags: ["景觀"],
+      note: "電話 037-878600。",
+      verify: false,
+    },
+    {
+      name: "映象水岸咖啡廳",
+      city: "苗栗縣",
+      district: "三義鄉",
+      address: "苗栗縣三義鄉西湖11號",
+      hours: "10:00–19:30",
+      closed: "週三",
+      tags: ["景觀"],
+      note: "電話 03-787-6699。",
+      verify: false,
+    },
+    {
+      name: "老屋六號咖啡",
+      city: "苗栗縣",
+      district: "南庄鄉",
+      address: "苗栗縣南庄鄉西村12鄰6號",
+      hours: "週一、週五 11:00–17:00 或 12:00–17:00（來源不一致）；週六日 10:00–18:00",
+      closed: "週二至週四",
+      tags: ["老宅"],
+      note: "電話 03-782-5175；週一、週五的開門時間來源不一致。",
+      verify: true,
+    },
+    {
+      name: "碧絡角花園咖啡",
+      city: "苗栗縣",
+      district: "南庄鄉",
+      address: "苗栗縣南庄鄉東河村橫屏背25號",
+      hours: "平日 10:00–18:00 或 10:00–19:00（來源不一致）；假日 09:00–18:00",
+      closed: "週三（僅一份來源提到）",
+      tags: ["景觀", "花園"],
+      note: "繡球花花園；各來源的營業時間與電話不一致。",
+      verify: true,
+    },
   ],
 
   // 搜尋到的來源文章（2026-11-17 查詢）
   SOURCES: [
+    // 台中市
     { title: "2026台中咖啡廳推薦20家（美麗佳人 Marie Claire）", url: "https://www.marieclaire.com.tw/lifestyle/taste/96089" },
     { title: "Peakless Coffee Roasters 介紹（upssmile）", url: "https://upssmile.com/270970/peakless-coffee-roasters" },
     { title: "考前衝刺不孤單！台中不限時咖啡廳讀書名單（臺中觀光旅遊網）", url: "https://taichung.travel/zh-tw/diary/detail/4509" },
@@ -182,6 +322,17 @@ window.CAFE_DATA = {
     { title: "精選 16 間台中不限時讀書咖啡廳（SOLER 風格誌）", url: "https://soler.com.tw/taichangcoffee/" },
     { title: "成真咖啡菜單（gwan.tw）", url: "https://gwan.tw/cometruecoffee-menu/" },
     { title: "At three café 店家資訊（FooTinder）", url: "https://en.footinder.app/places/642b96d9dbf53b7e7e2e3738" },
-    { title: "台中咖啡廳推薦（美食板 TVBS）", url: "https://supertaste.tvbs.com.tw/food/328392" },
+    { title: "台中咖啡廳推薦（TVBS 食尚玩家）", url: "https://supertaste.tvbs.com.tw/food/328392" },
+    // 苗栗縣
+    { title: "苗栗咖啡廳推薦 5 間（美麗佳人 Marie Claire）", url: "https://www.marieclaire.com.tw/lifestyle/taste/78135" },
+    { title: "苗栗咖啡廳推薦 15 家（Beauty321）", url: "https://www.beauty321.com/post/51739" },
+    { title: "苗栗咖啡廳 13 間（好好玩 FUNIT）", url: "https://gofunit.com/%E8%8B%97%E6%A0%97%E5%92%96%E5%95%A1%E5%BB%B3/" },
+    { title: "苗栗不限時咖啡廳 6 家（趣趣 TreaTrip）", url: "https://treatrip.com/food/unlimited-cafe-in-miaoli/" },
+    { title: "苗栗國喝咖啡 8 間（ReadyGo）", url: "https://imreadygo.com/80848/" },
+    { title: "頭份檸咖啡（瑋瑋＊美食萬歲）", url: "https://vivawei.tw/ning-cafe/" },
+    { title: "頭份貳拾參（阿華田的美食日記）", url: "https://huablog.tw/23coffee/" },
+    { title: "苗栗景觀餐廳 25 選（Dribs & Drabs）", url: "https://dribs-drabs.com/miaoli-view-restaurant/" },
+    { title: "苗栗景觀餐廳 22 間（linnote）", url: "https://linnote.com/scenic-restaurant-miaoli/" },
+    { title: "南庄碧絡角花園咖啡（寶寶溫旅行）", url: "https://bobowin.blog/miaoli-biro/" },
   ],
 };
