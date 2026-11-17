@@ -1,6 +1,6 @@
-# 專案規則：島嶼咖啡地圖
+# 專案規則：島嶼咖啡散策
 
-根目錄網頁是「島嶼咖啡地圖」（收錄全台 22 縣市），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
+根目錄網頁是「島嶼咖啡散策」（收錄全台 22 縣市），用 GitHub Pages 發佈（https://kid751003-source.github.io/repair-system/）。純 HTML/CSS/JavaScript，不需要建置工具、資料庫或金鑰。`設備借用/` 是另一個專案，有自己的 `AGENTS.md`，在那個資料夾工作時以它為準。
 
 ## 專案結構
 
