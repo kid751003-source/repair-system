@@ -94,18 +94,6 @@ body {
 }
 .hero-sub { margin: 12px 0 0; max-width: 34em; color: rgba(255, 247, 239, 0.85); font-size: 1.02rem; }
 
-.stats { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; padding: 0; }
-.stats li {
-  display: flex; align-items: baseline; gap: 6px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(4px);
-  font-size: 0.9rem;
-}
-.stats strong { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
-.stats span { color: rgba(255, 247, 239, 0.8); }
 
 /* ===================== 版面 ===================== */
 main { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
@@ -327,9 +315,6 @@ select {
   .hero-icon { width: 44px; height: 44px; border-radius: 12px; }
   .hero h1 { font-size: 1.75rem; }
   .hero-sub { font-size: 0.95rem; margin-top: 8px; }
-  .stats { gap: 6px; margin-top: 14px; }
-  .stats li { padding: 4px 11px; font-size: 0.8rem; gap: 4px; }
-  .stats strong { font-size: 0.98rem; }
   .filters { margin-top: -48px; padding: 16px; }
   .chips { margin: 0 -16px; padding: 2px 16px 4px; }
 }
