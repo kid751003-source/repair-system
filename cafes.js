@@ -14,6 +14,8 @@
 //   tags     特色標籤
 //   note     補充說明
 //   verify   是否需要特別確認
+//   instagram（選填）店家 Instagram 帳號，不含 @；只填來源文章寫明的帳號，查不到就不要填，
+//            頁面會改顯示「搜尋 Instagram」連結
 window.CAFE_DATA = {
   CHECKED_AT: "2026-11-19",
 
@@ -264,6 +266,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      instagram: "ycdg_cafe",
     },
     {
       name: "PearNature 梨本",
@@ -5433,5 +5436,6 @@ window.CAFE_DATA = {
     { title: "澎湖蒙地卡羅咖啡廳（黑皮的旅遊筆記）", url: "https://happytravel.tw/montecarlo/" },
     { title: "朵思咖啡 DOORS CAFE（台灣好廟網）", url: "https://temples.tw/place/Md2N4XaZL2" },
     { title: "澎湖咖啡廳清單（Cafe Nomad）", url: "https://cafenomad.tw/penghu/list" },
+    { title: "瑤池墮宮介紹，含 Instagram 帳號（輕旅行）", url: "https://travel.yam.com/article/133109" },
   ],
 };
