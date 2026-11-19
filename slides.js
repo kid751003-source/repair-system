@@ -16,14 +16,14 @@
 //   source  Wikimedia Commons 原始檔案頁面
 window.SLIDES = [
   {
-    src: "images/slides/latte-art.jpg",
-    alt: "白色咖啡杯裡的拿鐵，奶泡上用深色咖啡拉出葉子圖案",
+    src: "images/slides/latte-pour.jpg",
+    alt: "咖啡師一手拿著白色咖啡杯，一手把牛奶細細倒進杯中，奶泡正拉出葉子圖案",
     name: "拿鐵拉花",
-    place: "濃縮咖啡加上綿密奶泡，杯面拉出葉子、愛心的圖案",
+    place: "牛奶細細注入濃縮咖啡，一筆一畫在杯面拉出葉子圖案",
     find: "",
-    author: "Arisepeter",
-    license: "CC BY-SA 4.0",
-    source: "https://commons.wikimedia.org/wiki/File:A_cup_of_coffee.jpg",
+    author: "Kim Sanso",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Latte_art_3.jpg",
   },
   {
     src: "images/slides/espresso.jpg",
@@ -46,14 +46,14 @@ window.SLIDES = [
     source: "https://commons.wikimedia.org/wiki/File:Cappuccino_4.jpg",
   },
   {
-    src: "images/slides/pour-over.jpg",
-    alt: "廚房檯面上的手沖咖啡器具：濾杯、玻璃下壺、電子秤、細口手沖壺與磨豆機",
+    src: "images/slides/pour-over-drip.jpg",
+    alt: "從上方俯拍手沖咖啡：細口壺把熱水注入濾杯，咖啡粉冒出泡沫，旁邊放著咖啡豆罐與白色杯子",
     name: "手沖咖啡",
-    place: "用細口壺慢慢注水，喝得出每支豆子的風味",
+    place: "細口壺慢慢注水，看著咖啡粉膨脹冒泡，喝得出每支豆子的風味",
     find: "手沖",
-    author: "Cerebral726",
-    license: "CC BY-SA 4.0",
-    source: "https://commons.wikimedia.org/wiki/File:Coffee_Pour_Over_Setup.jpg",
+    author: "Kim Sanso",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Manual_drip_(pour-over)_coffee.jpg",
   },
   {
     src: "images/slides/iced-coffee.jpg",
