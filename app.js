@@ -101,6 +101,9 @@
     clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2",
     calendar: "M4 6.5h16v13.5H4z M4 10.5h16 M8 3.5v4 M16 3.5v4 M9.5 14.5l5 3.5 M14.5 14.5l-5 3.5",
     map: "M9 4 3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z M9 4v13.5 M15 6.5V20",
+    route: "M6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M18 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M8 17h7.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H16",
+    plus: "M12 5v14 M5 12h14",
+    check: "M5 12.5l4.5 4.5L19 7",
   };
   function icon(name) {
     const NS = "http://www.w3.org/2000/svg";
@@ -116,6 +119,25 @@
   function mapUrl(cafe) {
     return "https://www.google.com/maps/search/?api=1&query=" +
       encodeURIComponent(cafe.name + " " + cafe.address);
+  }
+
+  // ---------- 路線規劃 ----------
+  // 單店：「路線」開啟 Google 地圖從目前位置導航。
+  // 行程：最多 4 間（Google 地圖在手機瀏覽器最多接受 3 個中途點），存在這支手機的瀏覽器裡。
+  const TRIP_MAX = 4;
+  const TRIP_KEY = "cafe-trip-v1";
+  const MODE_KEY = "cafe-trip-mode-v1";
+  const byName = new Map(cafes.map((c) => [c.name, c]));
+  let trip = [];
+  try { trip = (JSON.parse(localStorage.getItem(TRIP_KEY) || "[]") || []).filter((n) => byName.has(n)).slice(0, TRIP_MAX); } catch (_) { trip = []; }
+  const saveTrip = () => { try { localStorage.setItem(TRIP_KEY, JSON.stringify(trip)); } catch (_) { /* 無法儲存時只在這次瀏覽有效 */ } };
+  const placeOf = (c) => c.name + " " + c.address;
+
+  function directionsUrl(stops, mode) {
+    const p = new URLSearchParams({ api: "1", destination: placeOf(stops[stops.length - 1]) });
+    if (mode) p.set("travelmode", mode);
+    if (stops.length > 1) p.set("waypoints", stops.slice(0, -1).map(placeOf).join("|"));
+    return "https://www.google.com/maps/dir/?" + p.toString();
   }
 
   // ---------- 篩選選項 ----------
@@ -231,13 +253,29 @@
     if (cafe.note) body.append(el("p", "note", cafe.note));
     li.append(body);
 
+    const actions = el("div", "cafe-actions");
     const a = el("a", "map-btn");
-    a.append(icon("map"), el("span", "", "在地圖上查看"));
+    a.append(icon("map"), el("span", "", "地圖"));
     a.href = mapUrl(cafe);
     a.target = "_blank";
     a.rel = "noopener";
     a.setAttribute("aria-label", cafe.name + " 的 Google 地圖");
-    li.append(a);
+
+    const r = el("a", "route-btn");
+    r.append(icon("route"), el("span", "", "路線"));
+    r.href = directionsUrl([cafe]);
+    r.target = "_blank";
+    r.rel = "noopener";
+    r.setAttribute("aria-label", "從目前位置到 " + cafe.name + " 的路線");
+
+    const t = el("button", "trip-btn");
+    t.type = "button";
+    t.dataset.name = cafe.name;
+    t.addEventListener("click", () => toggleTrip(cafe.name));
+    setTripBtn(t);
+
+    actions.append(a, r, t);
+    li.append(actions);
     return li;
   }
 
@@ -377,6 +415,81 @@
     start();
   })();
 
+  // ---------- 行程（多站路線） ----------
+  const tripBar = $("trip-bar");
+  const tripDialog = $("trip-dialog");
+  const tripList = $("trip-list");
+  const tripMode = $("trip-mode");
+  const tripGo = $("trip-go");
+  const tripNote = $("trip-mode-note");
+  try { const m = localStorage.getItem(MODE_KEY); if (m && [...tripMode.options].some((o) => o.value === m)) tripMode.value = m; } catch (_) { /* 略過 */ }
+
+  function setTripBtn(btn) {
+    const on = trip.includes(btn.dataset.name);
+    btn.setAttribute("aria-pressed", String(on));
+    btn.replaceChildren(icon(on ? "check" : "plus"), el("span", "", on ? "已加入行程" : "加入行程"));
+  }
+  function toggleTrip(name) {
+    const i = trip.indexOf(name);
+    if (i >= 0) trip.splice(i, 1);
+    else if (trip.length >= TRIP_MAX) { toast(`行程最多 ${TRIP_MAX} 間（Google 地圖手機版的限制），請先移除一間。`); return; }
+    else { trip.push(name); toast(`已加入行程（${trip.length}／${TRIP_MAX}）`, "查看行程", openTrip, 4000); }
+    saveTrip();
+    updateTrip();
+  }
+  function move(i, d) {
+    const j = i + d;
+    if (j < 0 || j >= trip.length) return;
+    [trip[i], trip[j]] = [trip[j], trip[i]];
+    saveTrip();
+    updateTrip();
+  }
+  function updateTrip() {
+    listEl.querySelectorAll(".trip-btn").forEach(setTripBtn);
+    tripBar.hidden = trip.length === 0;
+    document.body.classList.toggle("has-trip", trip.length > 0);
+    $("trip-count").textContent = `行程：${trip.length} 間咖啡廳`;
+
+    tripList.replaceChildren(...trip.map((name, i) => {
+      const c = byName.get(name);
+      const li = el("li", "trip-stop");
+      const text = el("div", "trip-stop-text");
+      text.append(el("strong", "", c.name), el("span", "", c.city + " " + c.district + "・" + c.hours));
+      const ctl = el("div", "trip-stop-ctl");
+      const up = el("button", "", "↑"); up.type = "button"; up.disabled = i === 0;
+      up.setAttribute("aria-label", "把 " + c.name + " 往前移"); up.addEventListener("click", () => move(i, -1));
+      const down = el("button", "", "↓"); down.type = "button"; down.disabled = i === trip.length - 1;
+      down.setAttribute("aria-label", "把 " + c.name + " 往後移"); down.addEventListener("click", () => move(i, 1));
+      const del = el("button", "", "✕"); del.type = "button";
+      del.setAttribute("aria-label", "從行程移除 " + c.name); del.addEventListener("click", () => toggleTrip(c.name));
+      ctl.append(up, down, del);
+      li.append(text, ctl);
+      return li;
+    }));
+    if (!trip.length) tripList.append(el("li", "trip-empty", "還沒有加入咖啡廳。在清單中按「加入行程」就會出現在這裡。"));
+
+    // 大眾運輸不支援中途點，只規劃到第 1 站
+    const transit = tripMode.value === "transit" && trip.length > 1;
+    tripNote.hidden = !transit;
+    const stops = trip.map((n) => byName.get(n));
+    if (stops.length) tripGo.href = directionsUrl(transit ? stops.slice(0, 1) : stops, tripMode.value);
+    tripGo.toggleAttribute("aria-disabled", !stops.length);
+    tripGo.classList.toggle("disabled", !stops.length);
+  }
+  function openTrip() {
+    updateTrip();
+    if (typeof tripDialog.showModal === "function") tripDialog.showModal(); else tripDialog.setAttribute("open", "");
+  }
+  function closeTrip() {
+    if (typeof tripDialog.close === "function") tripDialog.close(); else tripDialog.removeAttribute("open");
+  }
+  $("trip-open").addEventListener("click", openTrip);
+  $("trip-close").addEventListener("click", closeTrip);
+  tripDialog.addEventListener("click", (e) => { if (e.target === tripDialog) closeTrip(); }); // 點背景關閉
+  tripMode.addEventListener("change", () => { try { localStorage.setItem(MODE_KEY, tripMode.value); } catch (_) { /* 略過 */ } updateTrip(); });
+  $("trip-clear").addEventListener("click", () => { trip = []; saveTrip(); updateTrip(); });
+  tripGo.addEventListener("click", (e) => { if (!trip.length) e.preventDefault(); });
+
   // ---------- 回到頂端 ----------
   const toTop = $("to-top");
   const onScroll = () => { toTop.hidden = window.scrollY < 800; };
@@ -385,4 +498,5 @@
   onScroll();
 
   render();
+  updateTrip();
 })();

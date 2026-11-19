@@ -20,7 +20,7 @@
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
   <!-- 標題字體：只含「島嶼咖啡散策」六個字的 Noto Serif TC 子集（約 3 KB），先行載入避免閃爍 -->
   <link rel="preload" href="fonts/title-serif-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=20261119-2">
+  <link rel="stylesheet" href="style.css?v=20261119-3">
 </head>
 <body>
   <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
@@ -109,6 +109,33 @@
     <p>資料由 AI 整理自公開網路文章，僅供參考。</p>
   </footer>
 
+  <!-- 路線規劃：底部行程列與行程視窗 -->
+  <div id="trip-bar" class="trip-bar" hidden>
+    <span id="trip-count"></span>
+    <button id="trip-open" type="button">查看行程・規劃路線</button>
+  </div>
+  <dialog id="trip-dialog" class="trip-dialog" aria-labelledby="trip-title">
+    <div class="trip-head">
+      <h2 id="trip-title">我的咖啡散策行程</h2>
+      <button id="trip-close" type="button" aria-label="關閉">✕</button>
+    </div>
+    <p class="muted">從你目前的位置出發，依照下面的順序前往（最多 4 間）。</p>
+    <ol id="trip-list" class="trip-list"></ol>
+    <div class="field">
+      <label for="trip-mode">交通方式</label>
+      <select id="trip-mode">
+        <option value="driving">開車</option>
+        <option value="two-wheeler">機車</option>
+        <option value="walking">步行</option>
+        <option value="bicycling">自行車</option>
+        <option value="transit">大眾運輸</option>
+      </select>
+    </div>
+    <p id="trip-mode-note" class="trip-note" hidden>大眾運輸無法一次規劃多個中途點，會先規劃到第 1 間；到了之後再從行程繼續下一間。</p>
+    <a id="trip-go" class="trip-go" target="_blank" rel="noopener">用 Google 地圖規劃路線</a>
+    <button id="trip-clear" type="button" class="link-btn">清空行程</button>
+  </dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite" hidden>
     <span id="toast-text"></span>
     <button id="toast-action" type="button" hidden></button>
@@ -118,8 +145,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
   </button>
 
-  <script src="cafes.js?v=20261119-2"></script>
-  <script src="slides.js?v=20261119-2"></script>
-  <script src="app.js?v=20261119-2"></script>
+  <script src="cafes.js?v=20261119-3"></script>
+  <script src="slides.js?v=20261119-3"></script>
+  <script src="app.js?v=20261119-3"></script>
 </body>
 </html>
