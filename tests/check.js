@@ -113,6 +113,32 @@ ok(slides.every((s) => s.author && s.license && /^https:\/\//.test(s.source) && 
     ok(href.startsWith("https://www.google.com/maps/search/?api=1&query="), "地圖連結格式正確");
     await page.click("#reset-btn");
 
+    // 路線規劃
+    const route = await page.locator(".route-btn").first().getAttribute("href");
+    ok(route.startsWith("https://www.google.com/maps/dir/?api=1&destination="), "單店路線連結格式正確");
+    ok(!(await page.isVisible("#trip-bar")), "沒有行程時不顯示行程列");
+    const tb = page.locator(".trip-btn");
+    for (let i = 0; i < 3; i++) await tb.nth(i).click();
+    ok(await page.isVisible("#trip-bar") && (await page.textContent("#trip-count")).includes("3"), "加入 3 間後顯示行程列");
+    await page.click("#trip-open");
+    ok((await page.locator(".trip-stop").count()) === 3, "行程視窗列出 3 站");
+    const go = new URL(await page.getAttribute("#trip-go", "href"));
+    ok(go.searchParams.get("waypoints").split("|").length === 2 && go.searchParams.get("destination").startsWith(cafes[2].name) && go.searchParams.get("travelmode") === "driving",
+      "多站路線：2 個中途點、終點為第 3 站、預設開車");
+    await page.locator(".trip-stop").nth(2).locator("button").first().click(); // 第 3 站往前移
+    const go2 = new URL(await page.getAttribute("#trip-go", "href"));
+    ok(go2.searchParams.get("destination").startsWith(cafes[1].name), "調整順序後終點跟著改變");
+    await page.selectOption("#trip-mode", "transit");
+    const go3 = new URL(await page.getAttribute("#trip-go", "href"));
+    ok(await page.isVisible("#trip-mode-note") && !go3.searchParams.has("waypoints") && go3.searchParams.get("travelmode") === "transit", "大眾運輸只規劃到第 1 站並顯示說明");
+    await page.click("#trip-close");
+    await tb.nth(3).click(); await tb.nth(4).click();
+    ok((await page.textContent("#trip-count")).includes("4") && (await page.textContent("#toast-text")).includes("最多"), "行程最多 4 間");
+    await page.reload(); await page.waitForSelector(".cafe");
+    ok((await page.textContent("#trip-count")).includes("4") && (await page.inputValue("#trip-mode")) === "transit", "重新整理後保留行程與交通方式");
+    await page.click("#trip-open"); await page.click("#trip-clear"); await page.click("#trip-close");
+    ok(!(await page.isVisible("#trip-bar")), "清空行程後隱藏行程列");
+
     // Service Worker 與離線
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.reload();
