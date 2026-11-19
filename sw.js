@@ -6,7 +6,7 @@
 //
 // 版本號：修改下面 PRECACHE 裡的檔案或 index.html 的 ?v= 版本號時，
 // 請一起更新 VERSION，舊快取會在新版啟用時自動清除。
-const VERSION = "20261119-8";
+const VERSION = "20261119-9";
 const PREFIX = "taichung-cafe-";
 const CACHE = PREFIX + VERSION;
 // 先前「報修登記」版本留下的快取，一併清除
