@@ -16,6 +16,7 @@
 //   verify   是否需要特別確認
 //   instagram（選填）店家 Instagram 帳號，不含 @；只填來源文章寫明的帳號，查不到就不要填，
 //            頁面會改顯示「搜尋 Instagram」連結
+//   hot（選填）熱門推薦：每個縣市 3 間、被多篇推薦文章重複介紹的店，按「熱門咖啡推薦」時顯示
 window.CAFE_DATA = {
   CHECKED_AT: "2026-11-19",
 
@@ -57,6 +58,7 @@ window.CAFE_DATA = {
       note: "懷舊理髮廳改建。",
       verify: false,
       instagram: "9527.coffeebar",
+      hot: true,
     },
     {
       name: "隱山所",
@@ -69,6 +71,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "keelung.rcu",
+      hot: true,
     },
     {
       name: "渡邊珈琲製造所",
@@ -105,6 +108,7 @@ window.CAFE_DATA = {
       note: "老宅改建；各來源的公休日不一致。",
       verify: true,
       instagram: "wanchucoffee",
+      hot: true,
     },
     {
       name: "圖們咖啡 tuman café",
@@ -354,6 +358,7 @@ window.CAFE_DATA = {
       note: "各來源的公休日不一致。",
       verify: true,
       instagram: "hotocafe",
+      hot: true,
     },
     {
       name: "北風社",
@@ -366,6 +371,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "beifongshe",
+      hot: true,
     },
     {
       name: "Mowa Coffee Roasters",
@@ -378,6 +384,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "mowacoffeeroasters",
+      hot: true,
     },
     {
       name: "瑤池墮宮",
@@ -699,6 +706,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "a.plus.coffee",
+      hot: true,
     },
     {
       name: "淡水長堤 LB Cafe",
@@ -747,6 +755,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "yuyu_patisserie",
+      hot: true,
     },
     {
       name: "ASPOON CAFE",
@@ -771,6 +780,7 @@ window.CAFE_DATA = {
       note: "九份老街附近；僅收現金。",
       verify: true,
       instagram: "hima.cafe_",
+      hot: true,
     },
     {
       name: "樹窟奇木樓",
@@ -1042,6 +1052,7 @@ window.CAFE_DATA = {
       note: "四層樓挑高天井；巷內請勿停車。電話 03-428-7008。",
       verify: true,
       instagram: "wuweitangcoffee",
+      hot: true,
     },
     {
       name: "時常咖啡 Often coffee",
@@ -1054,6 +1065,7 @@ window.CAFE_DATA = {
       note: "英式復古風，澳洲早午餐。",
       verify: false,
       instagram: "_often.coffee",
+      hot: true,
     },
     {
       name: "Numbear 13 Café",
@@ -1194,6 +1206,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "Jo's Corner Café",
@@ -1387,6 +1400,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "deja_vu_space",
+      hot: true,
     },
     {
       name: "THE FOX COFFEE CLUB",
@@ -1469,6 +1483,7 @@ window.CAFE_DATA = {
       note: "各來源的營業時間與公休日不一致。",
       verify: true,
       instagram: "hiddenoff.off",
+      hot: true,
     },
     {
       name: "屬孰 belong to",
@@ -1504,6 +1519,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "23coffeeroasters",
+      hot: true,
     },
     {
       name: "PHOENIXCAFE 菲尼咖啡",
@@ -1765,6 +1781,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "mitsu._.dessert",
+      hot: true,
     },
     {
       name: "Ni Café 妮咖啡",
@@ -1787,6 +1804,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "已搬遷，舊址為科大一路 185 號；北歐極簡風。",
       verify: true,
+      hot: true,
     },
     {
       name: "藍氣球咖啡",
@@ -1799,6 +1817,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "blue.ballooncafe",
+      hot: true,
     },
     {
       name: "Coca Coffee 渴口手沖咖啡",
@@ -2069,6 +2088,7 @@ window.CAFE_DATA = {
       note: "不同文章的營業時間與公休日有出入。",
       verify: true,
       instagram: "pergramcoffee",
+      hot: true,
     },
     {
       name: "果宅咖啡",
@@ -2138,6 +2158,7 @@ window.CAFE_DATA = {
       note: "電話 03-787-6566。",
       verify: false,
       instagram: "3hills_sanyi",
+      hot: true,
     },
     {
       name: "漫時光咖啡",
@@ -2150,6 +2171,7 @@ window.CAFE_DATA = {
       note: "電話 037-878600。",
       verify: false,
       instagram: "woodtime31",
+      hot: true,
     },
     {
       name: "映象水岸咖啡廳",
@@ -2422,6 +2444,7 @@ window.CAFE_DATA = {
       tags: ["現場候位", "大片窗景"],
       note: "位於台中綠美圖內，圓形吧台與大片玻璃窗。",
       verify: false,
+      hot: true,
     },
     {
       name: "享。拾光 Fun Time",
@@ -2458,6 +2481,7 @@ window.CAFE_DATA = {
       note: "位於台中火車站舊站月台；各來源的營業時間不一致。",
       verify: true,
       instagram: "mamonaku_cafe",
+      hot: true,
     },
     {
       name: "早捌 x 柳川",
@@ -2481,6 +2505,7 @@ window.CAFE_DATA = {
       note: "近國美館的兩層樓老宅，日式直火烘焙。電話 04-2372-8001。",
       verify: false,
       instagram: "peakless_coffee_roasters",
+      hot: true,
     },
     {
       name: "MITAKA S 3e CAFE",
@@ -2859,6 +2884,7 @@ window.CAFE_DATA = {
       note: "各來源的公休日不一致。",
       verify: true,
       instagram: "yan.cafe",
+      hot: true,
     },
     {
       name: "Stable Fly 穩定飛行模式",
@@ -2871,6 +2897,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "stable_fly",
+      hot: true,
     },
     {
       name: "FUFU HYGGE coffee",
@@ -2895,6 +2922,7 @@ window.CAFE_DATA = {
       note: "",
       verify: false,
       instagram: "redleaf.hotel",
+      hot: true,
     },
     {
       name: "右舍咖啡",
@@ -3272,6 +3300,7 @@ window.CAFE_DATA = {
       note: "白色木造玻璃屋，日月潭周邊。電話 049-289-7903。",
       verify: false,
       instagram: "desolate_coffee",
+      hot: true,
     },
     {
       name: "鹿篙咖啡莊園",
@@ -3284,6 +3313,7 @@ window.CAFE_DATA = {
       note: "無須預約。",
       verify: false,
       instagram: "lugao_cafe_ttc",
+      hot: true,
     },
     {
       name: "先得月 Tea Lounge",
@@ -3308,6 +3338,7 @@ window.CAFE_DATA = {
       note: "採預約制（IG 或全預約）；各來源的營業時間不一致。",
       verify: true,
       instagram: "_lakemonster_",
+      hot: true,
     },
     {
       name: "金井珈琲 Kanei coffee",
@@ -3686,6 +3717,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "貓咪"],
       note: "雲中街文創聚落的日治時期警察宿舍；各來源的時間與公休日不一致。",
       verify: true,
+      hot: true,
     },
     {
       name: "陽台花序 Balcony Sense",
@@ -3818,6 +3850,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "電話 05-783-3827。",
       verify: false,
+      hot: true,
     },
     {
       name: "雲頂咖啡",
@@ -3829,6 +3862,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "夜景", "深夜營業"],
       note: "各來源的營業時間不一致。",
       verify: true,
+      hot: true,
     },
     {
       name: "永光故事屋",
@@ -4094,6 +4128,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "AMON 咖啡所",
@@ -4138,6 +4173,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "coffee PANTRY",
@@ -4182,6 +4218,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "Archers Kitchen 弓箭手",
@@ -4337,6 +4374,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "玻璃屋"],
       note: "田園中的玻璃屋；各來源的時間與公休日不一致。",
       verify: true,
+      hot: true,
     },
     {
       name: "瑞里小公主咖啡",
@@ -4458,6 +4496,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "不供應正餐、不接受預約，現場取號。電話 0933-683420。",
       verify: true,
+      hot: true,
     },
     {
       name: "鬼屋咖啡",
@@ -4469,6 +4508,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "AT FUN Cafe & Brunch",
@@ -4657,6 +4697,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "南美春室 THE POOL",
@@ -4822,6 +4863,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "來源的地址與時間標示不完全一致。",
       verify: true,
+      hot: true,
     },
     {
       name: "N coffee 珈琲屋",
@@ -4954,6 +4996,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "恬逸沙灘",
@@ -5208,6 +5251,7 @@ window.CAFE_DATA = {
       tags: ["貓咪"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "koou coffee（有木田日本酒）",
@@ -5285,6 +5329,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "輕軌光榮碼頭站步行約 5 分鐘。",
       verify: false,
+      hot: true,
     },
     {
       name: "銀座聚場 House of TAKAO GINZA",
@@ -5307,6 +5352,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "第一銀行金庫改建。",
       verify: false,
+      hot: true,
     },
     {
       name: "NOW & THEN by nybc 駁二店",
@@ -5462,6 +5508,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: true,
+      hot: true,
     },
     {
       name: "Paw Café",
@@ -5495,6 +5542,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "海上教堂咖啡",
@@ -5583,6 +5631,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "灰窯人文咖啡",
@@ -5848,6 +5897,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "日式懷舊風，豆漿吐司。",
       verify: false,
+      hot: true,
     },
     {
       name: "小溪邊咖啡",
@@ -5859,6 +5909,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "不提供訂位。",
       verify: false,
+      hot: true,
     },
     {
       name: "滿山望海",
@@ -5903,6 +5954,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "蒔花咖啡",
@@ -6113,6 +6165,7 @@ window.CAFE_DATA = {
       tags: ["手沖"],
       note: "手沖；2026 年來源寫 10:00–18:00、公休見 FB，較早來源寫 11:00–18:00。",
       verify: true,
+      hot: true,
     },
     {
       name: "晤子咖啡",
@@ -6168,6 +6221,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "近七星潭。",
       verify: false,
+      hot: true,
     },
     {
       name: "春小樹咖啡店",
@@ -6267,6 +6321,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "小鎮日",
@@ -6444,6 +6499,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "山木 SunMoon",
@@ -6510,6 +6566,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "位於江賢二藝術園區內。",
       verify: false,
+      hot: true,
     },
     {
       name: "都蘭海角咖啡 Dulan Cape Café",
@@ -6521,6 +6578,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "電話 0903-262-923；各來源的時間與公休日不一致。",
       verify: true,
+      hot: true,
     },
     {
       name: "海玥咖啡廳",
@@ -6830,6 +6888,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "嵵裡沙灘旁、寵物友善；各來源的時間不一致。電話 0910-662-025。",
       verify: true,
+      hot: true,
     },
     {
       name: "butterfly Cafe'",
@@ -6863,6 +6922,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "",
       verify: false,
+      hot: true,
     },
     {
       name: "牧羊人咖啡館",
@@ -6874,6 +6934,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "二崁聚落。",
       verify: false,
+      hot: true,
     },
     {
       name: "午風",
@@ -6985,6 +7046,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "國軍福利社老宅改建，肉桂捲；每月營業日請先看 IG。",
       verify: false,
+      hot: true,
     },
     {
       name: "浯日咖啡",
@@ -7029,6 +7091,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "古岡學校百年洋樓改建，招牌苦甜布丁；另有來源寫大古崗 54 號。",
       verify: false,
+      hot: true,
     },
     {
       name: "愜意甜點工作室",
@@ -7040,6 +7103,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "甜點"],
       note: "閩式古厝；來源未寫營業時間。",
       verify: true,
+      hot: true,
     },
     {
       name: "橫青商行",
@@ -7195,6 +7259,7 @@ window.CAFE_DATA = {
       tags: ["需訂位"],
       note: "全預約制（另有來源寫無固定店休，建議先電話確認）。電話 0988-308-311。",
       verify: false,
+      hot: true,
     },
     {
       name: "南萌咖啡館",
@@ -7228,6 +7293,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "各來源的營業時間不一致。",
       verify: true,
+      hot: true,
     },
     {
       name: "百分幸福咖啡廳",
@@ -7272,6 +7338,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "資料約 2022 年；來源的地址只寫到「莒光鄉一號」。",
       verify: true,
+      hot: true,
     },
     {
       name: "小柒 Z.O coffee",
@@ -7810,5 +7877,22 @@ window.CAFE_DATA = {
     { title: "金門觀光旅遊網 咖啡茶鋪", url: "https://kinmen.travel/zh-tw/shop/index/all-regions/restaurants,coffee-tea-shop" },
     { title: "好好咖啡屋 Hoho Cafe（visa520infinite）", url: "https://blog.udn.com/visa520infinite/181129713" },
     { title: "黃廷參三落大厝（兔兒毛毛姊妹花）", url: "https://twobunnytravel.tw/huang-ting-san/" },
+    { title: "基隆咖啡廳在地人推薦 7 間（Bella 儂儂）", url: "https://www.bella.tw/article/29082" },
+    { title: "2026基隆美食地圖：理髮廳咖啡館等熱點（美麗佳人）", url: "https://www.marieclaire.com.tw/lifestyle/taste/94826" },
+    { title: "基隆必去咖啡廳隱山所（TRAVELER Luxe）", url: "https://www.travelerluxe.com/article/desc/230008481" },
+    { title: "瑞芳咖啡廳 5 間推薦（KKday）", url: "https://www.kkday.com/zh-tw/blog/224748/asia-taiwan-taipei-rueifang-cafe" },
+    { title: "桃園 7 家特色咖啡廳推薦（Bella 儂儂）", url: "https://www.bella.tw/articles/travel&foodies/42224" },
+    { title: "2025 桃園不限時咖啡廳 8 間（BEAUTY美人圈）", url: "https://www.beauty321.com/post/62921" },
+    { title: "2025 新竹咖啡廳推薦 Top10（Bella 儂儂）", url: "https://www.bella.tw/articles/travel&foodies/52901/2025-hsinchu-cafe-recommend" },
+    { title: "竹北咖啡廳推薦 11 家（GOMAJI）", url: "https://www.gomaji.com/blog/%E7%AB%B9%E5%8C%97%E5%92%96%E5%95%A1%E5%BB%B3/" },
+    { title: "盤點彰化市 5 間質感老屋咖啡廳（GirlStyle）", url: "https://girlstyle.com/tw/article/463118/%E5%92%96%E5%95%A1%E5%BB%B3-%E8%80%81%E5%B1%8B-%E5%BD%B0%E5%8C%96%E5%B8%82" },
+    { title: "4 間彰化 IG 打卡咖啡廳推薦（JUKSY）", url: "https://chill.juksy.com/article/114811" },
+    { title: "嘉義阿里山咖啡廳 Top 15（愛食記）", url: "https://ifoodie.tw/explore/%E5%98%89%E7%BE%A9%E7%B8%A3/list/%E9%98%BF%E9%87%8C%E5%B1%B1%E5%92%96%E5%95%A1%E5%BB%B3" },
+    { title: "台南深夜咖啡廳 5 家推薦（JUKSY）", url: "https://www.juksy.com/article/128909" },
+    { title: "高雄駁二 Oracle Coffee 神諭咖啡（Bella 儂儂）", url: "https://www.bella.tw/articles/Travel&foodies/41825" },
+    { title: "高雄咖啡廳推薦 Akau Coffee 猻物咖啡（Bella 儂儂）", url: "https://www.bella.tw/articles/travel&foodies/36758" },
+    { title: "宜蘭 7 家老宅咖啡廳推薦（Bella 儂儂）", url: "https://www.bella.tw/articles/travel&foodies/51061/coffee-yilan-old-house" },
+    { title: "2026宜蘭咖啡廳 32 間（好好玩 FUNIT）", url: "https://gofunit.com/%E5%AE%9C%E8%98%AD%E5%92%96%E5%95%A1%E5%BB%B3/" },
+    { title: "2026台東 8 間早午餐與咖啡廳（Tatler Asia）", url: "https://www.tatlerasia.com/lifestyle/travel/the-best-in-taitung-zh-hant" },
   ],
 };

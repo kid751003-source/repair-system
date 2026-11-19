@@ -46,6 +46,7 @@ ok(dupUrl.length === 0, `來源網址不重複（重複：${dupUrl.length}）`);
 ok(data.SOURCES.every((s) => s.title && /^https:\/\//.test(s.url)), "來源都有標題與 https 網址");
 const badIg = cafes.filter((c) => "instagram" in c && !/^[A-Za-z0-9._]{1,30}$/.test(c.instagram));
 ok(badIg.length === 0, `Instagram 帳號格式正確（有問題：${badIg.map((c) => c.name).join("、") || "無"}）`);
+ok(cafes.every((c) => !("hot" in c) || c.hot === true), "hot 欄位只用 true");
 ok(/^\d{4}-\d{2}-\d{2}$/.test(data.CHECKED_AT), `CHECKED_AT 格式正確（${data.CHECKED_AT}）`);
 ok(!/sb_secret_|service_role/.test(read("cafes.js") + read("app.js") + read("index.html")), "網頁檔案沒有 secret key");
 
@@ -114,6 +115,17 @@ ok(slides.every((s) => s.author && s.license && /^https:\/\//.test(s.source) && 
     const href = await page.locator(".map-btn").first().getAttribute("href");
     ok(href.startsWith("https://www.google.com/maps/search/?api=1&query="), "地圖連結格式正確");
     await page.click("#reset-btn");
+
+    // 熱門咖啡推薦：每個縣市 3 間，按鈕只顯示熱門店，可再搭配縣市篩選
+    const hotCafes = cafes.filter((c) => c.hot);
+    ok(data.CITY_ORDER.every((city) => hotCafes.filter((c) => c.city === city).length === 3), `每個縣市都有 3 間熱門推薦（共 ${hotCafes.length} 間）`);
+    ok((await page.locator(".hot-badge").count()) === hotCafes.length, "熱門店家卡片顯示「熱門」標籤");
+    await page.click("#hot-btn");
+    ok((await page.getAttribute("#hot-btn", "aria-pressed")) === "true" && (await page.locator(".cafe").count()) === hotCafes.length, "按「熱門咖啡推薦」只顯示熱門店");
+    await page.selectOption("#city", c0.city);
+    ok((await page.locator(".cafe").count()) === 3, `熱門推薦可搭配縣市篩選（${c0.city} 3 間）`);
+    await page.click("#reset-btn");
+    ok((await page.getAttribute("#hot-btn", "aria-pressed")) === "false" && (await page.locator(".cafe").count()) === cafes.length, "清除篩選後取消熱門推薦");
 
     // Instagram：每張卡片都有一列；有帳號的連到店家頁面，沒有的連到 Google 搜尋
     ok((await page.locator(".ig-link").count()) === cafes.length, "每間咖啡廳都有 Instagram 連結");
