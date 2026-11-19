@@ -1,4 +1,4 @@
-// 頁首「景觀咖啡廳」投影片
+// 頁首「咖啡類型」投影片
 //
 // 照片來自 Wikimedia Commons，皆為創用 CC 授權，可在標示作者與授權的前提下使用。
 // 本站使用的是裁切成 16:9、縮小到 1280×720 的版本，存放在 images/slides/。
@@ -9,60 +9,60 @@
 //   src     圖片路徑
 //   alt     圖片的文字描述（給看不到圖片的人）
 //   name    標題
-//   place   地點說明
+//   place   說明文字
 //   find    按「在清單中查看」時要搜尋的關鍵字；清單裡沒有這間店時留空
 //   author  攝影者
 //   license 授權
 //   source  Wikimedia Commons 原始檔案頁面
 window.SLIDES = [
   {
-    src: "images/slides/hanxi-coffee-sun-moon-lake.jpg",
-    alt: "陰天山嵐中的木棧露台，擺著酒紅色陽傘與咖啡桌椅，欄杆外是遠山與湖畔",
-    name: "涵曦咖啡",
-    place: "南投縣魚池鄉・日月潭水社的湖景露台",
+    src: "images/slides/latte-art.jpg",
+    alt: "白色咖啡杯裡的拿鐵，奶泡上用深色咖啡拉出葉子圖案",
+    name: "拿鐵拉花",
+    place: "濃縮咖啡加上綿密奶泡，杯面拉出葉子、愛心的圖案",
     find: "",
-    author: "lienyuan lee",
-    license: "CC BY 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:%E6%B6%B5%E6%9B%A6%E5%92%96%E5%95%A1_Hanxi_Coffee_Room_-_panoramio.jpg",
+    author: "Arisepeter",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:A_cup_of_coffee.jpg",
   },
   {
-    src: "images/slides/biluojiao-cherry-path.jpg",
-    alt: "山坡上的步道兩旁是盛開的粉紅色櫻花樹與松樹，遠處是霧中的山谷",
-    name: "碧絡角花園咖啡",
-    place: "苗栗縣南庄鄉・櫻花盛開的山間步道",
-    find: "碧絡角花園咖啡",
-    author: "lienyuan lee",
-    license: "CC BY 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:%E7%A2%A7%E7%B5%A1%E8%A7%92_Biluojiao_-_panoramio_(2).jpg",
+    src: "images/slides/espresso.jpg",
+    alt: "白色桌面上，一杯放在黑色杯碟上的義式濃縮咖啡，表面有金黃色的咖啡油脂",
+    name: "義式濃縮 Espresso",
+    place: "高壓快速萃取的一小杯，表面浮著金黃色的咖啡油脂",
+    find: "",
+    author: "Jubair1985",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Espresso_Coffee_01.jpg",
   },
   {
-    src: "images/slides/shanfurong-garden-cafe.jpg",
-    alt: "紅磚屋的黃色木窗門敞開，門前有花盆、綠色長椅與粉紅色繡球花",
-    name: "山芙蓉藝術庭園",
-    place: "苗栗縣・花草環繞的庭園咖啡",
+    src: "images/slides/cappuccino.jpg",
+    alt: "木桌上一杯奶泡厚實、拉出愛心圖案的卡布奇諾，旁邊放著一本書",
+    name: "卡布奇諾",
+    place: "濃縮咖啡、熱牛奶與厚厚的奶泡，口感比拿鐵更綿密",
     find: "",
-    author: "fullfen666",
-    license: "CC BY-SA 2.0",
-    source: "https://commons.wikimedia.org/wiki/File:%E3%80%90%E8%8B%97%E6%A0%97%E6%99%AF%E9%BB%9E%E3%80%91%E5%B1%B1%E8%8A%99%E8%93%89%E8%97%9D%E8%A1%93%E5%BA%AD%E5%9C%92_(31907438503).jpg",
+    author: "Cabstarcz",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Cappuccino_4.jpg",
   },
   {
-    src: "images/slides/wuling-maple-cafe-night.jpg",
-    alt: "夜晚的庭院，路燈照亮放射狀圖案的石板地，四周是樹木與陽傘",
-    name: "楓林小館 Maple Cafe",
-    place: "台中市和平區・武陵農場的夜晚庭院",
-    find: "",
-    author: "lienyuan lee",
-    license: "CC BY 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:%E6%A5%93%E6%9E%97%E5%B0%8F%E9%A4%A8_Maple_Cafe_-_panoramio.jpg",
+    src: "images/slides/pour-over.jpg",
+    alt: "廚房檯面上的手沖咖啡器具：濾杯、玻璃下壺、電子秤、細口手沖壺與磨豆機",
+    name: "手沖咖啡",
+    place: "用細口壺慢慢注水，喝得出每支豆子的風味",
+    find: "手沖",
+    author: "Cerebral726",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Coffee_Pour_Over_Setup.jpg",
   },
   {
-    src: "images/slides/toucheng-castle-cafe-night.jpg",
-    alt: "夜色中燈光照亮的歐式石砌城堡建築，門前有樹木與點燈的入口",
-    name: "頭城城堡咖啡館",
-    place: "宜蘭縣頭城鎮・夜裡點燈的城堡",
+    src: "images/slides/iced-coffee.jpg",
+    alt: "木桌上一杯裝滿冰塊的冰咖啡，咖啡與牛奶在杯中交融",
+    name: "冰咖啡",
+    place: "京都風冰咖啡，加上冰塊與牛奶，炎熱天氣的首選",
     find: "",
-    author: "陳文振",
-    license: "CC BY-SA 3.0",
-    source: "https://commons.wikimedia.org/wiki/File:%E9%A0%AD%E5%9F%8E%E5%9F%8E%E5%A0%A1%E5%92%96%E5%95%A1%E9%A4%A8%E5%A4%9C%E6%99%AF_-_panoramio.jpg",
+    author: "Kenny Louie",
+    license: "CC BY 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:Blue_Bottle,_Kyoto_Style_Ice_Coffee_(5909775445).jpg",
   },
 ];

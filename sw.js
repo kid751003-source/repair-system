@@ -6,7 +6,7 @@
 //
 // 版本號：修改下面 PRECACHE 裡的檔案或 index.html 的 ?v= 版本號時，
 // 請一起更新 VERSION，舊快取會在新版啟用時自動清除。
-const VERSION = "20261119-1";
+const VERSION = "20261119-2";
 const PREFIX = "taichung-cafe-";
 const CACHE = PREFIX + VERSION;
 // 先前「報修登記」版本留下的快取，一併清除
@@ -18,11 +18,11 @@ const PRECACHE = [
   "./style.css?v=" + VERSION,
   "./cafes.js?v=" + VERSION,
   "./slides.js?v=" + VERSION,
-  "./images/slides/hanxi-coffee-sun-moon-lake.jpg",
-  "./images/slides/biluojiao-cherry-path.jpg",
-  "./images/slides/shanfurong-garden-cafe.jpg",
-  "./images/slides/wuling-maple-cafe-night.jpg",
-  "./images/slides/toucheng-castle-cafe-night.jpg",
+  "./images/slides/latte-art.jpg",
+  "./images/slides/espresso.jpg",
+  "./images/slides/cappuccino.jpg",
+  "./images/slides/pour-over.jpg",
+  "./images/slides/iced-coffee.jpg",
   "./app.js?v=" + VERSION,
   "./manifest.webmanifest",
   "./fonts/title-serif-700.woff2",

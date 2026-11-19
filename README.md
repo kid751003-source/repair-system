@@ -12,7 +12,7 @@
 - `cafes.js`：咖啡廳資料與資料來源清單。
 - `manifest.webmanifest`、`sw.js`、`icons/`：PWA 設定、離線快取與圖示。
 - `fonts/`：標題用的 Noto Serif TC（思源宋體）子集，只含「島嶼咖啡散策」六個字，依 SIL Open Font License 1.1 授權（`fonts/OFL.txt`）。改標題文字時要重新產生子集，否則新字會改用系統的宋體或明體顯示。
-- `slides.js`、`images/slides/`：頁首的景觀咖啡廳投影片。照片來自 Wikimedia Commons，皆為創用 CC 授權，每張的作者、授權與原始頁面寫在 `slides.js`，畫面上也會顯示。CC BY-SA 照片的裁切版本同樣依 CC BY-SA 授權。
+- `slides.js`、`images/slides/`：頁首的咖啡類型投影片。照片來自 Wikimedia Commons，皆為創用 CC 授權，每張的作者、授權與原始頁面寫在 `slides.js`，畫面上也會顯示。CC BY-SA 照片的裁切版本同樣依 CC BY-SA 授權。
 
 ## 資料說明
 
