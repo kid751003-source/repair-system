@@ -1978,6 +1978,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "各來源的公休日不一致。",
       verify: true,
+      instagram: "yan.cafe",
     },
     {
       name: "Stable Fly 穩定飛行模式",
@@ -1989,6 +1990,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      instagram: "stable_fly",
     },
     {
       name: "FUFU HYGGE coffee",
@@ -2000,6 +2002,7 @@ window.CAFE_DATA = {
       tags: ["早午餐"],
       note: "北歐 Hygge 風格。",
       verify: false,
+      instagram: "fufuhygge",
     },
     {
       name: "紅葉大旅社咖啡廳",
@@ -2011,6 +2014,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "",
       verify: false,
+      instagram: "redleaf.hotel",
     },
     {
       name: "右舍咖啡",
@@ -2022,6 +2026,7 @@ window.CAFE_DATA = {
       tags: ["不限時"],
       note: "整棟綠植建築；各來源的營業時間不一致。",
       verify: true,
+      instagram: "vicinocafe",
     },
     {
       name: "All In Coffee",
@@ -2033,6 +2038,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "allincoffee",
     },
     {
       name: "Subi coffee&bakery",
@@ -2077,6 +2083,7 @@ window.CAFE_DATA = {
       tags: ["不限時", "插座", "Wi-Fi"],
       note: "不限時、插座為作者造訪時的情況。",
       verify: false,
+      instagram: "zozocafe_lukang",
     },
     {
       name: "Daily Sweet Thing 恬事",
@@ -2099,6 +2106,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "客滿才限時"],
       note: "有庭院；低消 120 元，客滿時用餐 90 分鐘。",
       verify: false,
+      instagram: "backstreet.72",
     },
     {
       name: "凡咖啡 Fang Kofi",
@@ -2108,8 +2116,9 @@ window.CAFE_DATA = {
       hours: "10:00–18:00 或 11:00–19:00（來源不一致）",
       closed: "週二（僅一份來源提到）",
       tags: ["老宅"],
-      note: "百年古宅，近鹿港民俗文物館；各來源的營業時間不一致。",
+      note: "百年古宅，近鹿港民俗文物館；各來源的營業時間不一致；可能已歇業：店家 Instagram 頁面標示已結束營業，食記也標示已歇業，出發前請先確認",
       verify: true,
+      instagram: "fangkofi",
     },
     {
       name: "大手咖啡 Da Sho Coffee",
@@ -2121,6 +2130,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "",
       verify: false,
+      instagram: "da_sho_coffee",
     },
     {
       name: "洛津有夢",
@@ -2132,6 +2142,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "百年老宅。電話 04-777-2163。",
       verify: false,
+      instagram: "ubang.cafe",
     },
     {
       name: "綠海咖啡館",
@@ -2154,6 +2165,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "各來源的營業時間不一致。",
       verify: true,
+      instagram: "fw_cafe",
     },
     {
       name: "別有洞天",
@@ -2198,6 +2210,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "深夜營業"],
       note: "有店貓；各來源的營業時間不一致。",
       verify: true,
+      instagram: "haocoffee_tw",
     },
     {
       name: "四季花園",
@@ -2220,6 +2233,7 @@ window.CAFE_DATA = {
       tags: ["早午餐", "甜點"],
       note: "純白半透明玻璃屋；部分甜點每日限量。",
       verify: false,
+      instagram: "forest.roasting",
     },
     {
       name: "漬果 succade",
@@ -2231,6 +2245,7 @@ window.CAFE_DATA = {
       tags: ["甜點"],
       note: "右舍咖啡的蜜餞甜點品牌；低消 205 元起。",
       verify: false,
+      instagram: "succade_bakery",
     },
     {
       name: "野花小姐",
@@ -2242,6 +2257,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "卦山村美學生活聚落二樓。",
       verify: false,
+      instagram: "misswildflowers2021",
     },
     {
       name: "端倪生活",
@@ -2265,6 +2281,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "玻璃屋"],
       note: "白色木造玻璃屋，日月潭周邊。電話 049-289-7903。",
       verify: false,
+      instagram: "desolate_coffee",
     },
     {
       name: "鹿篙咖啡莊園",
@@ -2276,6 +2293,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "無須預約。",
       verify: false,
+      instagram: "lugao_cafe_ttc",
     },
     {
       name: "先得月 Tea Lounge",
@@ -2287,6 +2305,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "深夜營業"],
       note: "另有來源寫的時段不同。",
       verify: true,
+      instagram: "closertolake",
     },
     {
       name: "湖の怪物咖啡",
@@ -2298,6 +2317,7 @@ window.CAFE_DATA = {
       tags: ["需訂位"],
       note: "採預約制（IG 或全預約）；各來源的營業時間不一致。",
       verify: true,
+      instagram: "_lakemonster_",
     },
     {
       name: "金井珈琲 Kanei coffee",
@@ -2309,6 +2329,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "電話 0905-138670。",
       verify: false,
+      instagram: "kanei_coffee",
     },
     {
       name: "Moon Cafe'",
@@ -2353,6 +2374,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "另有來源寫枇杷路 87-1 號。",
       verify: false,
+      instagram: "midd.coffee",
     },
     {
       name: "隱茶 Steam",
@@ -2364,6 +2386,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "來源未寫開門時間。",
       verify: true,
+      instagram: "steam.grove",
     },
     {
       name: "92向陽高山咖啡",
@@ -5582,5 +5605,11 @@ window.CAFE_DATA = {
     { title: "松日咖啡 Instagram 帳號（dcard.tw）", url: "https://www.dcard.tw/f/food/p/257359463" },
     { title: "TokuToku matcha&coffee Instagram 帳號（beyondyourtaste.com）", url: "https://beyondyourtaste.com/tokutoku/" },
     { title: "尊任咖啡 勤美店 Instagram 帳號（chiaoda.com）", url: "https://chiaoda.com/respectivecoffee/" },
+    { title: "咖啡烟 Instagram 帳號（ikiwi.tw）", url: "https://ikiwi.tw/yancafe-changhua/" },
+    { title: "FUFU HYGGE coffee Instagram 帳號（nowhot01.com）", url: "https://nowhot01.com/fufuhygge/" },
+    { title: "紅葉大旅社咖啡廳 Instagram 帳號（huasayhi.com）", url: "https://huasayhi.com/redleaf-changhua/" },
+    { title: "右舍咖啡 Instagram 帳號（tenjo.tw）", url: "https://tenjo.tw/vicinocafe/" },
+    { title: "小巷七貳 ALLEY 72 Instagram 帳號（wendychangblog.com）", url: "https://wendychangblog.com/alley-72/" },
+    { title: "洛津有夢 Instagram 帳號（tkfl.tw）", url: "https://tkfl.tw/lok-tin-u-bang-cafe/" },
   ],
 };
