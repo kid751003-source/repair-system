@@ -56,6 +56,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "懷舊理髮廳改建。",
       verify: false,
+      instagram: "9527.coffeebar",
     },
     {
       name: "隱山所",
@@ -67,6 +68,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "keelung.rcu",
     },
     {
       name: "渡邊珈琲製造所",
@@ -78,6 +80,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "hermes_coffee2.0",
     },
     {
       name: "曙‧初見咖啡",
@@ -89,6 +92,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "chujian_cafe",
     },
     {
       name: "萬祝號",
@@ -100,6 +104,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "老宅改建；各來源的公休日不一致。",
       verify: true,
+      instagram: "wanchucoffee",
     },
     {
       name: "圖們咖啡 tuman café",
@@ -111,6 +116,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "景觀"],
       note: "正濱漁港老宅海景座位；各來源的營業時間不一致。",
       verify: true,
+      instagram: "tumancafe_keelung",
     },
     {
       name: "嶼我 Me & Island",
@@ -133,6 +139,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "緊鄰正濱漁港。",
       verify: false,
+      instagram: "noplan20181001",
     },
     {
       name: "閑閑",
@@ -188,6 +195,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "近廟口夜市，復古花磚老屋。",
       verify: false,
+      instagram: "enzocafe.kl",
     },
     {
       name: "夏隆咖啡",
@@ -210,6 +218,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "hi_and_coffee",
     },
     {
       name: "瀞咖啡 Coffee Ching",
@@ -221,6 +230,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "coffee_ching",
     },
     // ---------- 台北市 ----------
     {
@@ -233,6 +243,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "各來源的公休日不一致。",
       verify: true,
+      instagram: "hotocafe",
     },
     {
       name: "北風社",
@@ -244,6 +255,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業", "現場候位"],
       note: "",
       verify: false,
+      instagram: "beifongshe",
     },
     {
       name: "Mowa Coffee Roasters",
@@ -255,6 +267,7 @@ window.CAFE_DATA = {
       tags: ["自家烘焙"],
       note: "",
       verify: false,
+      instagram: "mowacoffeeroasters",
     },
     {
       name: "瑤池墮宮",
@@ -300,6 +313,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "近捷運台北小巨蛋站。",
       verify: false,
+      instagram: "thequietlight_cafe_songshan",
     },
     {
       name: "2730café 貳柒參零咖啡",
@@ -322,6 +336,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業", "客滿才限時"],
       note: "近捷運大安站；客滿時平日限 3 小時、假日限 2 小時。",
       verify: false,
+      instagram: "three_brothers.co2023",
     },
     {
       name: "北捷咖啡 大安森林店",
@@ -344,6 +359,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "fomo.coffee_",
     },
     {
       name: "未央咖啡店",
@@ -355,6 +371,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      instagram: "bcmidnightcafe",
     },
     {
       name: "% Arabica 台北象山",
@@ -366,6 +383,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "arabicataiwan",
     },
     {
       name: "海子家珈琲",
@@ -377,6 +395,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "uminoko_cafe",
     },
     {
       name: "白胖咖啡館",
@@ -410,6 +429,7 @@ window.CAFE_DATA = {
       tags: ["不限時", "插座", "深夜營業"],
       note: "",
       verify: false,
+      instagram: "bananabluecoffee_offical",
     },
     {
       name: "R．U Coffee",
@@ -421,6 +441,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "rucoffeeru",
     },
     {
       name: "COME UP Patisserie",
@@ -430,8 +451,9 @@ window.CAFE_DATA = {
       hours: "12:00–18:00",
       closed: "週四",
       tags: ["需訂位", "甜點"],
-      note: "須先預約。",
-      verify: false,
+      note: "須先預約；可能已歇業：Threads 帳號簡介寫實體店已結束營業；globalfoodelicious.com 食記也標示歇業，出發前請先確認",
+      verify: true,
+      instagram: "come_up_patisserie.tw",
     },
     {
       name: "穠咖啡 Nong Coffee Roaster",
@@ -443,6 +465,7 @@ window.CAFE_DATA = {
       tags: ["自家烘焙"],
       note: "電話 02-2828-6210。",
       verify: false,
+      instagram: "nongcafe1121461",
     },
     // ---------- 新北市 ----------
     {
@@ -455,6 +478,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "a.plus.coffee",
     },
     {
       name: "淡水長堤 LB Cafe",
@@ -466,6 +490,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "深夜營業"],
       note: "淡水河岸。",
       verify: false,
+      instagram: "lb__cafe",
     },
     {
       name: "家門 Kamon Cafe",
@@ -477,6 +502,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "kamoncafe",
     },
     {
       name: "哩哉咖啡 Uknowhere Café",
@@ -488,6 +514,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "uknowhere.cafe",
     },
     {
       name: "YUYU Patisserie",
@@ -499,6 +526,7 @@ window.CAFE_DATA = {
       tags: ["甜點"],
       note: "",
       verify: false,
+      instagram: "yuyu_patisserie",
     },
     {
       name: "ASPOON CAFE",
@@ -510,6 +538,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "各來源的營業時間不一致。",
       verify: true,
+      instagram: "aspoon_cafe",
     },
     {
       name: "暇咖啡 HIMA CAFE",
@@ -521,6 +550,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "寵物友善", "現場候位"],
       note: "九份老街附近；僅收現金。",
       verify: true,
+      instagram: "hima.cafe_",
     },
     {
       name: "樹窟奇木樓",
@@ -543,6 +573,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "近捷運頂溪站。",
       verify: false,
+      instagram: "mrchu20210612",
     },
     {
       name: "卡斯地畫廊咖啡 CASTiG Café",
@@ -576,6 +607,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      instagram: "tothemoooontw",
     },
     {
       name: "Mimado Cafe",
@@ -587,6 +619,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "mimado.cafe",
     },
     {
       name: "HOLIN COFFEE 歐臨咖啡",
@@ -598,6 +631,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "holincoffee",
     },
     {
       name: "探尋咖啡 Touch Café 中和店",
@@ -662,8 +696,9 @@ window.CAFE_DATA = {
       hours: "12:30–18:00",
       closed: "週二、週三",
       tags: [],
-      note: "",
-      verify: false,
+      note: "可能已歇業：食尚玩家店家頁（supertaste.tvbs.com.tw/infocard/26624）標示已歇業，僅一個來源，出發前請先確認",
+      verify: true,
+      instagram: "liher.yingge",
     },
     // ---------- 桃園市 ----------
     {
@@ -676,6 +711,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "四層樓挑高天井；巷內請勿停車。電話 03-428-7008。",
       verify: true,
+      instagram: "wuweitangcoffee",
     },
     {
       name: "時常咖啡 Often coffee",
@@ -687,6 +723,7 @@ window.CAFE_DATA = {
       tags: ["早午餐"],
       note: "英式復古風，澳洲早午餐。",
       verify: false,
+      instagram: "_often.coffee",
     },
     {
       name: "Numbear 13 Café",
@@ -698,6 +735,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "numbear_13_cafe",
     },
     {
       name: "我們。他們",
@@ -709,6 +747,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "各來源的公休日不一致。",
       verify: true,
+      instagram: "usthem0527",
     },
     {
       name: "耳蟲咖啡 Earworm Coffee",
@@ -718,8 +757,9 @@ window.CAFE_DATA = {
       hours: "12:00–18:00",
       closed: "未查到",
       tags: [],
-      note: "",
-      verify: false,
+      note: "可能已歇業：部落格（phyllishappyday.com/earworm-coffee-zhongli/）寫店家預計只營業到 2026 年 8 月底，僅一個來源，出發前請先確認",
+      verify: true,
+      instagram: "earworm_coffee",
     },
     {
       name: "Poffee Canteen",
@@ -731,6 +771,7 @@ window.CAFE_DATA = {
       tags: ["不限時"],
       note: "",
       verify: false,
+      instagram: "poffee_canteen",
     },
     {
       name: "Abbraccio 抱抱義大利",
@@ -742,6 +783,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "abbraccio.italy",
     },
     {
       name: "蕋咖啡 Rui Café",
@@ -753,6 +795,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "電話 03-212-1312。",
       verify: false,
+      instagram: "rui__cafe",
     },
     {
       name: "星海之戀",
@@ -775,6 +818,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "thehernion",
     },
     {
       name: "綠庭緣",
@@ -797,6 +841,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "日治時期老診所洋樓改建；各來源的開門時間不一致。",
       verify: true,
+      instagram: "travelerbade",
     },
     {
       name: "TT coffee",
@@ -841,6 +886,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "夜景", "深夜營業", "寵物友善", "玻璃屋"],
       note: "乳姑山上，可遠眺台北 101。電話 03-489-7666。",
       verify: false,
+      instagram: "summer_land_2023",
     },
     {
       name: "HAKKAFE' 哈嘎廢",
@@ -852,6 +898,7 @@ window.CAFE_DATA = {
       tags: ["老宅"],
       note: "大草皮上的老宅木屋；來源未寫完整營業時間。",
       verify: true,
+      instagram: "hakkafe__",
     },
     {
       name: "找一個地方",
@@ -863,6 +910,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "gotoaplace2rest",
     },
     {
       name: "尼爾瓦特 NEAR WATER café",
@@ -5437,5 +5485,28 @@ window.CAFE_DATA = {
     { title: "朵思咖啡 DOORS CAFE（台灣好廟網）", url: "https://temples.tw/place/Md2N4XaZL2" },
     { title: "澎湖咖啡廳清單（Cafe Nomad）", url: "https://cafenomad.tw/penghu/list" },
     { title: "瑤池墮宮介紹，含 Instagram 帳號（輕旅行）", url: "https://travel.yam.com/article/133109" },
+    { title: "Mowa Coffee Roasters Instagram 帳號（threads.com）", url: "https://www.threads.com/@vivialoveyou/post/DUE_VT2k0_v" },
+    { title: "The Quiet Light 默光咖啡 Instagram 帳號（linktr.ee）", url: "https://linktr.ee/thequietlight" },
+    { title: "% Arabica 台北象山 Instagram 帳號（wowlavie.com）", url: "https://www.wowlavie.com/article/ae2101623" },
+    { title: "海子家珈琲 Instagram 帳號（kyliechen.tw）", url: "https://kyliechen.tw/%E3%80%8C%E6%8D%B7%E9%81%8B%EF%BC%9A%E4%B8%AD%E6%AD%A3%E7%B4%80%E5%BF%B5%E5%A0%82%E7%AB%99%E3%80%8D%E6%B5%B7%E5%AD%90%E5%AE%B6%E7%8F%88%E7%90%B2/" },
+    { title: "COME UP Patisserie Instagram 帳號（threads.com）", url: "https://www.threads.com/@come_up_patisserie.tw" },
+    { title: "穠咖啡 Nong Coffee Roaster Instagram 帳號（linktr.ee）", url: "https://linktr.ee/nongcoffee" },
+    { title: "秋香理髮廳 Instagram 帳號（ekangwoman.com）", url: "https://ekangwoman.com/9527-coffeebar/" },
+    { title: "隱山所 Instagram 帳號（carollin.tw）", url: "https://carollin.tw/keelung-rcu/" },
+    { title: "曙‧初見咖啡 Instagram 帳號（annieko.tw）", url: "https://annieko.tw/chujiancafe/" },
+    { title: "萬祝號 Instagram 帳號（enlifesun.com）", url: "https://enlifesun.com/2022-11-02-312/" },
+    { title: "海恩咖啡 Hi and coffee Instagram 帳號（facebook.com）", url: "https://www.facebook.com/p/Hi-and-coffee-%E6%B5%B7%E6%81%A9%E5%92%96%E5%95%A1-61553640624065/" },
+    { title: "哩哉咖啡 Uknowhere Café Instagram 帳號（shinblog.com.tw）", url: "https://shinblog.com.tw/uknowherecafe/" },
+    { title: "Mr. Chu 啾・咖啡食堂 Instagram 帳號（duringmyjourney.com）", url: "https://duringmyjourney.com/mr-chu/" },
+    { title: "Mimado Cafe Instagram 帳號（facebook.com）", url: "https://www.facebook.com/mimadocafetw/" },
+    { title: "日和 LiHer Instagram 帳號（wandy8575.pixnet.net）", url: "https://wandy8575.pixnet.net/blog/posts/14222294496" },
+    { title: "武威堂咖啡 Instagram 帳號（blackmomo.tw）", url: "https://blackmomo.tw/wuweitang/" },
+    { title: "時常咖啡 Often coffee Instagram 帳號（hippolife.tw）", url: "https://hippolife.tw/taoyuan-food-oftencoffee" },
+    { title: "耳蟲咖啡 Earworm Coffee Instagram 帳號（threads.com）", url: "https://www.threads.com/@tabetai.0620/post/DAgJQnez7lK" },
+    { title: "Poffee Canteen Instagram 帳號（bizdangan.com）", url: "https://www.bizdangan.com/poffee-canteen" },
+    { title: "Abbraccio 抱抱義大利 Instagram 帳號（eatpanda.tw）", url: "https://eatpanda.tw/abbraccio/" },
+    { title: "Henion Coffee 赫尼恩 Instagram 帳號（picuki.com）", url: "https://www.picuki.com/profile/thehernion" },
+    { title: "HAKKAFE' 哈嘎廢 Instagram 帳號（beauty321.com）", url: "https://www.beauty321.com/post/44016" },
+    { title: "找一個地方 Instagram 帳號（upssmile.com）", url: "https://upssmile.com/233617/gotoaplace2rest" },
   ],
 };
