@@ -7,7 +7,7 @@
 //   1. 資料：cafes.js 每筆欄位齊全、縣市在 CITY_ORDER 內、店名與「縣市＋地址」不重複、來源網址不重複、CHECKED_AT 格式正確
 //   2. 版本：index.html 的 ?v= 與 sw.js 的 VERSION 一致；PRECACHE 裡的本機檔案都存在
 //   3. 投影片：slides.js 的圖片都存在，作者、授權、來源都有填
-//   4. 網頁（手機寬度）：卡片數量等於資料筆數、沒有橫向捲動、沒有 JavaScript 錯誤、篩選正常、
+//   4. 網頁（手機寬度）：卡片數量等於資料筆數、沒有橫向捲動、沒有 JavaScript 錯誤、篩選正常、Instagram 與路線連結、
 //      Service Worker 控制頁面、離線重新整理仍看得到清單
 // 全部通過時結束代碼為 0，否則為 1。
 
@@ -44,6 +44,8 @@ ok(dupAddr.length === 0, `地址不重複（重複：${dupAddr.join("、") || "�
 const dupUrl = dup(data.SOURCES.map((s) => s.url));
 ok(dupUrl.length === 0, `來源網址不重複（重複：${dupUrl.length}）`);
 ok(data.SOURCES.every((s) => s.title && /^https:\/\//.test(s.url)), "來源都有標題與 https 網址");
+const badIg = cafes.filter((c) => "instagram" in c && !/^[A-Za-z0-9._]{1,30}$/.test(c.instagram));
+ok(badIg.length === 0, `Instagram 帳號格式正確（有問題：${badIg.map((c) => c.name).join("、") || "無"}）`);
 ok(/^\d{4}-\d{2}-\d{2}$/.test(data.CHECKED_AT), `CHECKED_AT 格式正確（${data.CHECKED_AT}）`);
 ok(!/sb_secret_|service_role/.test(read("cafes.js") + read("app.js") + read("index.html")), "網頁檔案沒有 secret key");
 
@@ -111,6 +113,22 @@ ok(slides.every((s) => s.author && s.license && /^https:\/\//.test(s.source) && 
     ok((await page.locator(".cafe-name").allTextContents()).includes(c0.name), `搜尋店名正確（${c0.name}）`);
     const href = await page.locator(".map-btn").first().getAttribute("href");
     ok(href.startsWith("https://www.google.com/maps/search/?api=1&query="), "地圖連結格式正確");
+    await page.click("#reset-btn");
+
+    // Instagram：每張卡片都有一列；有帳號的連到店家頁面，沒有的連到 Google 搜尋
+    ok((await page.locator(".ig-link").count()) === cafes.length, "每間咖啡廳都有 Instagram 連結");
+    const igCafe = cafes.find((c) => c.instagram);
+    if (igCafe) {
+      await page.fill("#search", igCafe.name);
+      const igHref = await page.locator(".ig-link").first().getAttribute("href");
+      ok(igHref === `https://www.instagram.com/${igCafe.instagram}/`, `有帳號的店連到 Instagram 頁面（${igCafe.name}）`);
+      await page.click("#reset-btn");
+    }
+    const noIg = cafes.find((c) => !c.instagram);
+    await page.fill("#search", noIg.name);
+    const sHref = await page.locator(".ig-link").first().getAttribute("href");
+    ok(sHref.startsWith("https://www.google.com/search?q=") && decodeURIComponent(sHref).includes(noIg.name) &&
+      (await page.locator(".ig-link").first().getAttribute("rel")) === "noopener", "沒有帳號的店改連 Google 搜尋");
     await page.click("#reset-btn");
 
     // 路線規劃

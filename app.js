@@ -95,7 +95,7 @@
     return node;
   }
 
-  // 線條圖示（地址、時間、公休、地圖）
+  // 線條圖示（地址、時間、公休、地圖、Instagram）
   const ICONS = {
     pin: "M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z M12 12.2a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2z",
     clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2",
@@ -104,6 +104,7 @@
     route: "M6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M18 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M8 17h7.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H16",
     plus: "M12 5v14 M5 12h14",
     check: "M5 12.5l4.5 4.5L19 7",
+    instagram: "M7.5 3.5h9a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4h-9a4 4 0 0 1-4-4v-9a4 4 0 0 1 4-4z M12 15.8a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6z M17 7h.01",
   };
   function icon(name) {
     const NS = "http://www.w3.org/2000/svg";
@@ -221,6 +222,28 @@
     return div;
   }
 
+  // Instagram：有查證過的帳號（cafes.js 的 instagram 欄位）直接連到店家頁面；
+  // 沒有的話連到 Google 搜尋「店名＋縣市＋Instagram」，不自行猜測帳號。
+  const IG_HANDLE = /^[A-Za-z0-9._]{1,30}$/;
+  function igRow(cafe) {
+    const div = el("div", "info-row");
+    const a = el("a", "ig-link");
+    a.target = "_blank";
+    a.rel = "noopener";
+    if (cafe.instagram && IG_HANDLE.test(cafe.instagram)) {
+      a.textContent = "@" + cafe.instagram;
+      a.href = "https://www.instagram.com/" + cafe.instagram + "/";
+      a.setAttribute("aria-label", cafe.name + " 的 Instagram（@" + cafe.instagram + "）");
+    } else {
+      a.textContent = "搜尋 Instagram";
+      a.classList.add("ig-search");
+      a.href = "https://www.google.com/search?q=" + encodeURIComponent(cafe.name + " " + cafe.city + " Instagram");
+      a.setAttribute("aria-label", "用 Google 搜尋 " + cafe.name + " 的 Instagram");
+    }
+    div.append(icon("instagram"), a);
+    return div;
+  }
+
   const isUnknown = (v) => /未查到|未寫/.test(v);
 
   function card(cafe) {
@@ -241,7 +264,8 @@
     info.append(
       row("pin", "地址", cafe.address, false),
       row("clock", "營業", cafe.hours, isUnknown(cafe.hours)),
-      row("calendar", "公休", cafe.closed, isUnknown(cafe.closed))
+      row("calendar", "公休", cafe.closed, isUnknown(cafe.closed)),
+      igRow(cafe)
     );
     body.append(info);
 
