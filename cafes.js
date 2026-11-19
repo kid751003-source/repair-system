@@ -934,6 +934,7 @@ window.CAFE_DATA = {
       tags: ["不限時"],
       note: "可長時間久坐；各來源的開門時間不一致。",
       verify: true,
+      instagram: "heartbeatcafe5.1",
     },
     {
       name: "Deja vu 即視感",
@@ -945,6 +946,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "deja_vu_space",
     },
     {
       name: "THE FOX COFFEE CLUB",
@@ -956,6 +958,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "thefoxcoffeeclub",
     },
     {
       name: "一想一響",
@@ -967,6 +970,7 @@ window.CAFE_DATA = {
       tags: ["插座", "深夜營業"],
       note: "低消一杯飲品。",
       verify: false,
+      instagram: "reecho_coffee",
     },
     {
       name: "墨咖啡 INK COFFEE",
@@ -989,6 +993,7 @@ window.CAFE_DATA = {
       tags: ["不限時", "插座", "深夜營業", "免服務費"],
       note: "近新竹巨城與新竹火車站；各來源的營業時間與公休日不一致。",
       verify: true,
+      instagram: "shinebright0317",
     },
     {
       name: "莯Mu café dessert",
@@ -1011,6 +1016,7 @@ window.CAFE_DATA = {
       tags: ["早午餐"],
       note: "",
       verify: false,
+      instagram: "cafeintw",
     },
     {
       name: "Hidden Off",
@@ -1022,6 +1028,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "各來源的營業時間與公休日不一致。",
       verify: true,
+      instagram: "hiddenoff.off",
     },
     {
       name: "屬孰 belong to",
@@ -1044,6 +1051,7 @@ window.CAFE_DATA = {
       tags: ["甜點"],
       note: "",
       verify: false,
+      instagram: "boten_hsinchu",
     },
     {
       name: "貳參咖啡",
@@ -1055,6 +1063,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "23coffeeroasters",
     },
     {
       name: "PHOENIXCAFE 菲尼咖啡",
@@ -1077,6 +1086,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "diningtable.hsinchu",
     },
     {
       name: "種甜",
@@ -1088,6 +1098,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "甜點"],
       note: "低消一杯飲品；資料較舊，可能限時 2 小時。電話 03-562-1004。",
       verify: true,
+      instagram: "lun_handmade_bread",
     },
     {
       name: "蕨蕨",
@@ -1099,6 +1110,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "juejueplantcafe",
     },
     {
       name: "somewhere cafe",
@@ -1110,6 +1122,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      instagram: "cafe.somewhere.today",
     },
     {
       name: "inBush",
@@ -1121,6 +1134,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "咖啡廳兼酒吧；各來源的時段不一致。",
       verify: true,
+      instagram: "inbush.tw",
     },
     {
       name: "熒熒商行",
@@ -1152,8 +1166,8 @@ window.CAFE_DATA = {
       hours: "12:00–17:00",
       closed: "未查到",
       tags: ["自家烘焙"],
-      note: "",
-      verify: false,
+      note: "可能已不提供內用：店家 Facebook 粉專寫 2020 年起無內用及外帶服務、只販售咖啡豆，出發前請先確認",
+      verify: true,
     },
     {
       name: "小丹咖啡",
@@ -1187,6 +1201,7 @@ window.CAFE_DATA = {
       tags: ["甜點"],
       note: "",
       verify: false,
+      instagram: "slow_dessert",
     },
     {
       name: "江山藝改所",
@@ -1210,6 +1225,7 @@ window.CAFE_DATA = {
       tags: ["甜點", "新開幕"],
       note: "",
       verify: false,
+      instagram: "mitsu._.dessert",
     },
     {
       name: "Ni Café 妮咖啡",
@@ -1243,6 +1259,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "blue.ballooncafe",
     },
     {
       name: "Coca Coffee 渴口手沖咖啡",
@@ -1254,6 +1271,7 @@ window.CAFE_DATA = {
       tags: ["手沖"],
       note: "",
       verify: false,
+      instagram: "coca_coffee",
     },
     {
       name: "世界幸福咖啡 總店",
@@ -1287,6 +1305,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "峨眉湖畔、細茅埔吊橋旁。電話 03-580-6852。",
       verify: false,
+      instagram: "snowlake_cafe",
     },
     {
       name: "山吹舍",
@@ -1353,6 +1372,7 @@ window.CAFE_DATA = {
       tags: ["插座", "Wi-Fi", "寵物友善", "客滿才限時"],
       note: "近新竹喜來登；低消一杯，平日不限時、假日限 2 小時。",
       verify: false,
+      instagram: "hownice_life",
     },
     {
       name: "扣子商行",
@@ -1364,6 +1384,7 @@ window.CAFE_DATA = {
       tags: ["不限時"],
       note: "",
       verify: false,
+      instagram: "kou.kouzi",
     },
     {
       name: "Jin Coffee",
@@ -1387,6 +1408,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "不同文章的營業時間與公休日有出入。",
       verify: true,
+      instagram: "pergramcoffee",
     },
     {
       name: "果宅咖啡",
@@ -1398,6 +1420,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "guo.home_coffee",
     },
     {
       name: "檸咖啡 Ning Cafe",
@@ -1407,7 +1430,7 @@ window.CAFE_DATA = {
       hours: "平日 09:00–18:00；週末 09:00–21:00",
       closed: "未查到",
       tags: ["不限時", "插座", "Wi-Fi", "早午餐", "甜點"],
-      note: "每人低消 100 元。電話 037-590176。來源文章較舊，資訊可能已變動。",
+      note: "每人低消 100 元。電話 037-590176。來源文章較舊，資訊可能已變動；可能已歇業或遷址：愛食記標示已歇業，另有部落格寫已遷址，出發前請先確認",
       verify: true,
     },
     {
@@ -1442,6 +1465,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "每組入內不超過 6 位。",
       verify: false,
+      instagram: "miruminori",
     },
     {
       name: "3 Hills Cafe 三丘景觀餐廳",
@@ -1453,6 +1477,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "電話 03-787-6566。",
       verify: false,
+      instagram: "3hills_sanyi",
     },
     {
       name: "漫時光咖啡",
@@ -1464,6 +1489,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "電話 037-878600。",
       verify: false,
+      instagram: "woodtime31",
     },
     {
       name: "映象水岸咖啡廳",
@@ -1519,6 +1545,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "chingcafe",
     },
     {
       name: "重成商號",
@@ -1530,6 +1557,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "甜點"],
       note: "老柑仔店二樓。電話 037-432-128。",
       verify: false,
+      instagram: "ccsh037",
     },
     {
       name: "Doo Coffee",
@@ -1550,8 +1578,9 @@ window.CAFE_DATA = {
       hours: "週二至週日 11:30–14:00、17:00–20:00",
       closed: "週一",
       tags: [],
-      note: "電話 037-228080。",
-      verify: false,
+      note: "電話 037-228080；可能已歇業：店家 Threads 帳號（@mumu037228080）貼文寫營業到 2026 年 4 月 30 日，出發前請先確認",
+      verify: true,
+      instagram: "immumupasta",
     },
     {
       name: "C3 Cafe",
@@ -1563,6 +1592,7 @@ window.CAFE_DATA = {
       tags: ["景觀", "需訂位"],
       note: "日式庭園；榻榻米座位建議預約。電話 0933-195-236。",
       verify: false,
+      instagram: "project_c3_",
     },
     {
       name: "花露農場",
@@ -1574,6 +1604,7 @@ window.CAFE_DATA = {
       tags: ["景觀"],
       note: "農場景觀餐廳，可喝咖啡吃甜點。",
       verify: false,
+      instagram: "annflowerhome",
     },
     {
       name: "恩琲咖啡 Onffee",
@@ -1585,6 +1616,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "RT 麵包店內；每人低消 150 元。電話 037-667837。",
       verify: false,
+      instagram: "onffee_coffee",
     },
     {
       name: "窖咖啡 Coffee Cellar",
@@ -1607,6 +1639,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "建國路商圈，原路易莎咖啡店址；來源未寫門牌號碼。",
       verify: true,
+      instagram: "gaffee_stop",
     },
     // ---------- 台中市 ----------
     {
@@ -1630,6 +1663,7 @@ window.CAFE_DATA = {
       tags: ["不限時", "插座", "Wi-Fi", "早午餐"],
       note: "近中科商圈。",
       verify: false,
+      instagram: "funtime20180414",
     },
     {
       name: "時光",
@@ -1641,6 +1675,7 @@ window.CAFE_DATA = {
       tags: ["現場候位"],
       note: "每人需點一杯飲品或一份餐點。",
       verify: false,
+      instagram: "hi.xikon",
     },
     {
       name: "Mamonaku Café（復古車廂）",
@@ -1652,6 +1687,7 @@ window.CAFE_DATA = {
       tags: ["復古車廂", "不提供預約"],
       note: "位於台中火車站舊站月台；各來源的營業時間不一致。",
       verify: true,
+      instagram: "mamonaku_cafe",
     },
     {
       name: "早捌 x 柳川",
@@ -1674,6 +1710,7 @@ window.CAFE_DATA = {
       tags: ["新開幕", "自家烘焙", "老宅", "手沖"],
       note: "近國美館的兩層樓老宅，日式直火烘焙。電話 04-2372-8001。",
       verify: false,
+      instagram: "peakless_coffee_roasters",
     },
     {
       name: "MITAKA S 3e CAFE",
@@ -1685,6 +1722,7 @@ window.CAFE_DATA = {
       tags: ["需訂位"],
       note: "採線上訂位。",
       verify: false,
+      instagram: "mitaka_3e",
     },
     {
       name: "At three café",
@@ -1707,6 +1745,7 @@ window.CAFE_DATA = {
       tags: ["甜點", "舒芙蕾鬆餅"],
       note: "位於審計新村旁；各來源的營業時間不一致。",
       verify: true,
+      instagram: "cometruecoffee.shenji",
     },
     {
       name: "同齊咖吡 北屯旗艦店",
@@ -1718,6 +1757,7 @@ window.CAFE_DATA = {
       tags: ["不限時", "插座", "Wi-Fi", "深夜營業"],
       note: "民俗公園旁，有停車場。電話 04-2247-8366。",
       verify: false,
+      instagram: "ttcr_taichung",
     },
     {
       name: "松日咖啡",
@@ -1729,6 +1769,7 @@ window.CAFE_DATA = {
       tags: ["插座", "Wi-Fi", "客滿才限時"],
       note: "無客滿不限時。",
       verify: false,
+      instagram: "halocafe.songri",
     },
     {
       name: "祌咖啡 Chung Café",
@@ -1740,6 +1781,7 @@ window.CAFE_DATA = {
       tags: ["深夜營業"],
       note: "",
       verify: false,
+      instagram: "chungcafe_tw",
     },
     {
       name: "G'day",
@@ -1751,6 +1793,7 @@ window.CAFE_DATA = {
       tags: ["不限時", "插座"],
       note: "",
       verify: false,
+      instagram: "gday5100",
     },
     {
       name: "啡文學咖啡館 大英旗艦店",
@@ -1771,8 +1814,9 @@ window.CAFE_DATA = {
       hours: "未查到",
       closed: "未查到",
       tags: ["不限時", "插座", "甜點"],
-      note: "平日低消任一品項；假日低消每人 150 元。",
+      note: "平日低消任一品項；假日低消每人 150 元；可能已遷址：店家 Instagram 簡介地址為台中市中區中山路164號，2025 年部落格也寫已從東區搬到中山路，出發前請先確認",
       verify: true,
+      instagram: "guo_dessert",
     },
     {
       name: "冰穀咖啡館 草悟店",
@@ -1784,6 +1828,7 @@ window.CAFE_DATA = {
       tags: ["老宅", "自家烘焙"],
       note: "模範市場內五十年老宅；資料較舊。",
       verify: true,
+      instagram: "beangood_cafe",
     },
     {
       name: "細水焙煎所",
@@ -1795,6 +1840,7 @@ window.CAFE_DATA = {
       tags: ["自家烘焙"],
       note: "",
       verify: false,
+      instagram: "sishui868",
     },
     {
       name: "民生咖啡 People & Life.Cafe",
@@ -1806,6 +1852,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "people_and_life_cafe",
     },
     {
       name: "肉窩咖啡 ZOU WOO KAFFEE",
@@ -1817,6 +1864,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "zouwookaffee",
     },
     {
       name: "VWI COFFEE HOUSE",
@@ -1839,6 +1887,7 @@ window.CAFE_DATA = {
       tags: [],
       note: "",
       verify: false,
+      instagram: "tokutoku1628",
     },
     {
       name: "尊任咖啡 勤美店",
@@ -1850,6 +1899,7 @@ window.CAFE_DATA = {
       tags: ["甜點"],
       note: "附文具與火漆章 DIY。",
       verify: false,
+      instagram: "respective.coffee",
     },
     {
       name: "逆光咖啡",
@@ -1903,8 +1953,8 @@ window.CAFE_DATA = {
       hours: "10:00–22:00",
       closed: "週一",
       tags: ["深夜營業"],
-      note: "位於纖維工藝博物館內。",
-      verify: false,
+      note: "位於纖維工藝博物館內；可能已歇業：店家已改名「可愛地文化藝術健康咖啡餐廳」，親子網站 abic 標示已結束營業，出發前請先確認",
+      verify: true,
     },
     {
       name: "解憂咖啡館",
@@ -5508,5 +5558,29 @@ window.CAFE_DATA = {
     { title: "Henion Coffee 赫尼恩 Instagram 帳號（picuki.com）", url: "https://www.picuki.com/profile/thehernion" },
     { title: "HAKKAFE' 哈嘎廢 Instagram 帳號（beauty321.com）", url: "https://www.beauty321.com/post/44016" },
     { title: "找一個地方 Instagram 帳號（upssmile.com）", url: "https://upssmile.com/233617/gotoaplace2rest" },
+    { title: "洞心咖啡 Instagram 帳號（linktr.ee）", url: "https://linktr.ee/heartbeatcafe5.1" },
+    { title: "Deja vu 即視感 Instagram 帳號（erin.tw）", url: "https://erin.tw/deja-vu-space/" },
+    { title: "一想一響 Instagram 帳號（upssmile.com）", url: "https://upssmile.com/137454/reecho-coffee" },
+    { title: "Hidden Off Instagram 帳號（tingandkao.com）", url: "https://tingandkao.com/hiddenoff/" },
+    { title: "波藤甜點 Instagram 帳號（huablog.tw）", url: "https://huablog.tw/boten_hsinchu/" },
+    { title: "貳參咖啡 Instagram 帳號（upssmile.com）", url: "https://upssmile.com/149243/23-coffee-roasters" },
+    { title: "種甜 Instagram 帳號（erin.tw）", url: "https://erin.tw/%E7%A8%AE%E7%94%9C_2022/" },
+    { title: "蕨蕨 Instagram 帳號（erin.tw）", url: "https://erin.tw/juejuecafe/" },
+    { title: "somewhere cafe Instagram 帳號（yxstudios.tw）", url: "https://yxstudios.tw/archives/3525" },
+    { title: "Mitsu蜜 Instagram 帳號（linktr.ee）", url: "https://linktr.ee/mitsu3" },
+    { title: "Coca Coffee 渴口手沖咖啡 Instagram 帳號（zora.tw）", url: "https://zora.tw/coca/" },
+    { title: "雪之湖景觀咖啡廳 Instagram 帳號（walkerland.com.tw）", url: "https://www.walkerland.com.tw/article/view/361353" },
+    { title: "果宅咖啡 Instagram 帳號（flyblog.cc）", url: "https://flyblog.cc/guohome-coffee/" },
+    { title: "MUMU 悠然時光 Instagram 帳號（facebook.com）", url: "https://www.facebook.com/imMuMuPaStA/about_contact_and_basic_info/" },
+    { title: "思達卜咖啡 頭份店 Instagram 帳號（vivawei.tw）", url: "https://vivawei.tw/stop-coffee/" },
+    { title: "享。拾光 Fun Time Instagram 帳號（shin.tw）", url: "https://shin.tw/funtime/" },
+    { title: "Mamonaku Café（復古車廂） Instagram 帳號（kidsplay.com.tw）", url: "https://www.kidsplay.com.tw/index.php/visitspot/content/7669" },
+    { title: "Peakless Coffee Roasters Instagram 帳號（nowhot01.com）", url: "https://nowhot01.com/peakless-coffee-roasters/" },
+    { title: "MITAKA S 3e CAFE Instagram 帳號（facebook.com）", url: "https://www.facebook.com/MITAKA.3e.CAFE/" },
+    { title: "成真咖啡（審計新村） Instagram 帳號（gwan.tw）", url: "https://gwan.tw/cometruecoffee/" },
+    { title: "同齊咖吡 北屯旗艦店 Instagram 帳號（upssmile.com）", url: "https://upssmile.com/283973/ttcrtaichung" },
+    { title: "松日咖啡 Instagram 帳號（dcard.tw）", url: "https://www.dcard.tw/f/food/p/257359463" },
+    { title: "TokuToku matcha&coffee Instagram 帳號（beyondyourtaste.com）", url: "https://beyondyourtaste.com/tokutoku/" },
+    { title: "尊任咖啡 勤美店 Instagram 帳號（chiaoda.com）", url: "https://chiaoda.com/respectivecoffee/" },
   ],
 };
