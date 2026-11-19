@@ -38,6 +38,19 @@
   "dir": "ltr",
   "shortcuts": [
     {
+      "name": "熱門咖啡推薦",
+      "short_name": "熱門推薦",
+      "description": "每個縣市精選 3 間熱門咖啡廳",
+      "url": "./?hot=1",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "景觀咖啡廳",
       "short_name": "景觀",
       "description": "只看有景觀的咖啡廳",

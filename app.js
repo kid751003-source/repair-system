@@ -86,6 +86,10 @@
   const listEl = $("cafe-list");
   const countEl = $("result-count");
   const selectedTags = new Set();
+  // 熱門咖啡推薦：只顯示 cafes.js 標記 hot 的店（每縣市 3 間）
+  const hotBtn = $("hot-btn");
+  let hotOnly = false;
+  const setHot = (on) => { hotOnly = on; hotBtn.setAttribute("aria-pressed", String(on)); };
 
   // 一律用 textContent 建立元素，避免插入 HTML
   function el(tag, className, text) {
@@ -196,6 +200,7 @@
     const q = p.get("q");
     const city = p.get("city");
     if (q) searchEl.value = q;
+    if (p.get("hot") === "1") setHot(true);
     if (city && [...cityEl.options].some((o) => o.value === city)) { cityEl.value = city; fillDistricts(); }
     p.getAll("tag").forEach((t) => {
       const btn = [...tagBox.querySelectorAll(".chip")].find((b) => b.textContent === t);
@@ -206,6 +211,7 @@
   // ---------- 清單 ----------
   function matches(cafe) {
     const q = searchEl.value.trim().toLowerCase();
+    if (hotOnly && !cafe.hot) return false;
     if (cityEl.value && cafe.city !== cityEl.value) return false;
     if (districtEl.value && cafe.city + "|" + cafe.district !== districtEl.value) return false;
     for (const t of selectedTags) if (!cafe.tags.includes(t)) return false;
@@ -251,7 +257,10 @@
     const body = el("div", "cafe-body");
 
     const head = el("div", "cafe-head");
-    head.append(el("h2", "cafe-name", cafe.name), el("span", "district", cafe.city + " " + cafe.district));
+    const meta = el("div", "cafe-meta");
+    meta.append(el("span", "district", cafe.city + " " + cafe.district));
+    if (cafe.hot) meta.append(el("span", "hot-badge", "熱門"));
+    head.append(el("h2", "cafe-name", cafe.name), meta);
     body.append(head);
 
     if (cafe.verify) {
@@ -314,6 +323,7 @@
     }
   }
 
+  hotBtn.addEventListener("click", () => { setHot(!hotOnly); render(); });
   searchEl.addEventListener("input", render);
   cityEl.addEventListener("change", () => { fillDistricts(); render(); });
   districtEl.addEventListener("change", render);
@@ -324,6 +334,7 @@
     districtEl.value = "";
     selectedTags.clear();
     tagBox.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    setHot(false);
     render();
   });
 

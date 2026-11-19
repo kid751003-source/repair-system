@@ -20,7 +20,7 @@
        並同步更新 sw.js 的 VERSION，讓瀏覽器與離線快取都換成新版 -->
   <!-- 標題字體：只含「島嶼咖啡散策」六個字的 Noto Serif TC 子集（約 3 KB），先行載入避免閃爍 -->
   <link rel="preload" href="fonts/title-serif-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=20261119-10">
+  <link rel="stylesheet" href="style.css?v=20261119-11">
 </head>
 <body>
   <a class="skip-link" href="#cafe-list">跳到咖啡廳清單</a>
@@ -63,6 +63,13 @@
 
   <main>
     <section class="panel filters" aria-label="篩選">
+      <div class="hot-row">
+        <button id="hot-btn" class="hot-btn" type="button" aria-pressed="false" aria-describedby="hot-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-3.9 0-7-2.8-7-6.6 0-3.1 2.1-5.2 3.6-6.9.5 1.6 1.4 2.7 2.6 3.2C11 7.5 12.6 4.6 15 3c-.4 2.6.6 4.4 2 6 1.2 1.4 2 3 2 5.4 0 3.8-3.1 6.6-7 6.6z"/></svg>
+          <span>熱門咖啡推薦</span>
+        </button>
+        <p id="hot-note" class="hot-note">每個縣市精選 3 間，被多篇推薦文章重複介紹的咖啡廳</p>
+      </div>
       <div class="search-wrap">
         <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <label class="sr-only" for="search">搜尋</label>
@@ -145,8 +152,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
   </button>
 
-  <script src="cafes.js?v=20261119-10"></script>
-  <script src="slides.js?v=20261119-10"></script>
-  <script src="app.js?v=20261119-10"></script>
+  <script src="cafes.js?v=20261119-11"></script>
+  <script src="slides.js?v=20261119-11"></script>
+  <script src="app.js?v=20261119-11"></script>
 </body>
 </html>

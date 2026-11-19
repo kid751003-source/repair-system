@@ -216,6 +216,14 @@ select {
 
 .cafe-head { display: flex; flex-direction: column-reverse; gap: 6px; margin-bottom: 10px; }
 .cafe-name { margin: 0; font-size: 1.15rem; line-height: 1.35; overflow-wrap: anywhere; }
+.cafe-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.hot-badge {
+  display: inline-flex; align-items: center;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--on-accent); background: var(--accent);
+  border-radius: 999px; padding: 2px 10px;
+}
+.hot-badge::before { content: "★"; margin-right: 4px; font-size: 0.7rem; }
 .district {
   align-self: flex-start;
   display: inline-flex; align-items: center; gap: 4px;
@@ -631,3 +639,18 @@ body.has-trip .toast { bottom: calc(90px + env(safe-area-inset-bottom)); }
 }
 .trip-go.disabled { opacity: 0.45; pointer-events: none; }
 .trip-dialog .link-btn { display: block; margin: 8px auto 0; }
+
+/* ---------- 熱門咖啡推薦 ---------- */
+.hot-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 14px; }
+.hot-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 18px;
+  font: inherit; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--accent-strong); background: var(--accent-soft);
+  border: 1.5px solid var(--accent); border-radius: 999px; cursor: pointer;
+}
+.hot-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.hot-btn:hover { filter: brightness(1.08); }
+.hot-btn[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); }
+.hot-note { margin: 0; flex: 1 1 220px; font-size: 0.85rem; color: var(--muted); }
+@media (min-width: 720px) { .filters .hot-row { grid-column: 1 / -1; } }
